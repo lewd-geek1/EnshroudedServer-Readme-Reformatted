@@ -1,13 +1,23 @@
 # Enshrouded Server Settings
 
-Enshrouded server settings are stored in a text file named `enshrouded_server.json`
-inside the main Enshrouded server folder.
+Enshrouded server settings are stored in a text file named `enshrouded_server.json` inside the main Enshrouded server folder.
+This is a reformated revision of the original `README.txt` file in the same folder.
+
 
 > [!NOTE]
 > To make editing the file easier,
 use a code editor like *Codium*, *VSCode*, *notepad++*, etc...
 These editors color code settings to help pinpoint which areas should be altered,
 vs which need to be left alone.
+
+---
+
+## Contents
+
+- [Settings Configuration](#settings-configuration)
+- [Default Settings JSON](#default-server-settings)
+
+---
 
 ## Settings Configuration
 

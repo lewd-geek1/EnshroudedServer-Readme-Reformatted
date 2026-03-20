@@ -1,5 +1,7 @@
 # SERVER SETTINGS
 
+[Enshrouded Server](./README.md) > Server Settings
+
 Server settings refer to settings which affect communication between the host computer/server and Enshrouded services.
 
 > [!TIP]
@@ -9,20 +11,21 @@ Be a decent person, **don't use offensive language**.
 
 ## Contents
 
-1. [Settings Table](#settings-table)
-
-    Settings options and their details.
-
-2. [Tags](#tags-details)
-
-    More information on setting tags.
-
-3. [Game Settings Preset](#gamesettingspreset-details)
-
-    This settings is probably why your custom game settings aren't working.
-
-4. [Example](#settings-example)
-
+- [SERVER SETTINGS](#server-settings)
+  - [Contents](#contents)
+  - [Settings Table](#settings-table)
+  - [Additional Information](#additional-information)
+    - [`tags` Details](#tags-details)
+      - [Allowed Tags](#allowed-tags)
+      - [tags Examples](#tags-examples)
+        - [All tags on one line](#all-tags-on-one-line)
+        - [One tag per line](#one-tag-per-line)
+    - [`gameSettingsPreset` Details](#gamesettingspreset-details)
+      - [`gameSettingsPreset` Options](#gamesettingspreset-options)
+      - [`gameSettingsPreset` example](#gamesettingspreset-example)
+    - [`bannedAccounts` Details](#bannedaccounts-details)
+      - [`bannedAccounts` Example](#bannedaccounts-example)
+  - [Settings Example](#settings-example)
 ---
 
 ## Settings Table
@@ -51,14 +54,14 @@ Be a decent person, **don't use offensive language**.
 
 ### `tags` Details
 
-> [!IMPORTANT]
-> When adding `tags` to your server settings, **do not** put a comma (`,`) after the last tag in the list.
-
 Tags help other players find a fitting server to join by using currated options to describe:
 
 - if the server is happy to have new players
 - what languages are spoken on the server and 
 - if there is a main gameplay focus
+
+> [!IMPORTANT]
+> When adding `tags` to your server settings, **do not** put a comma (`,`) after the last tag in the list.
 
 #### Allowed Tags
 
@@ -86,22 +89,19 @@ Tags help other players find a fitting server to join by using currated options 
 
 #### tags Examples
 
-#### All tags on one line
+##### All tags on one line
 
 ```javascript
-
 {
     ...
     "tags": ["LookingForPlayers", "English", "BaseBuilding"],
     ...
 }
-
 ```
 
-#### One tag per line
+##### One tag per line
 
 ```javascript
-
 {
     ...
     "tags": [ // <-- add tags below this line
@@ -111,14 +111,13 @@ Tags help other players find a fitting server to join by using currated options 
     ], // <-- add tags above this line
     ...
 }
-
 ```
 
 ### `gameSettingsPreset` Details
 
-```{important}
-To customize gameplay, this settings should be set to `"Custom"`
-```
+> [!important]
+> To customize gameplay, this settings should be set to `"Custom"`
+
 #### `gameSettingsPreset` Options
 
 | Value          | Use-Case                                    | Description                                         |
@@ -129,17 +128,52 @@ To customize gameplay, this settings should be set to `"Custom"`
 | `"Survival"`   | Those who seek some punishment              | Hard \+ survival mechanics                          |
 | **`"Custom"`** | **Fully custom gameplay and difficulty**    | **see [Gameplay Settings](./gameplay_settings.md)** |
 
-### `bannedAccounts` Details
+#### `gameSettingsPreset` example
 
-```{note}
-On top of the previously available "kick"-option for server hosts, update `0.9.0.0` introduced the option to permanently ban individual players from a server.
+```json
+{
+    ...
+    "gameSettingsPreset": "Custom",
+    ...
+}
 ```
 
-The list of banned players can be accessed in-game via the `Social` tab where players can be added or removed.
-The list can also be manually edited in `enshrouded_server.json` when the server is not running.
+### `bannedAccounts` Details
 
-The information stored in `enshrouded_server.json` is `accountIDHash` (an identifier for the Steam account ID without violating the protected personal data of the player), `displayName` (a.k.a Steam account name), `characterName` and `banDate` (which is stored as unix timestamp).
+> [!note]
+> Update `0.9.0.0` introduced the option to permanently ban individual players from a server.
 
+> [!TIP]
+> The list of banned players can be accessed in-game via the `Social` tab where players can be added or removed.
+>
+> Unless you already have a list of players to ban, its best to manage players in-game.
+
+`bannedAccounts` is a list of collections including:
+
+1. `accountIDHash` (privacy protected Steam account identifier)
+2. `displayName` (a.k.a Steam account name)
+3. `characterName`
+4. `banDate` (as unix timestamp)
+
+#### `bannedAccounts` Example
+
+> [!WARNING]
+> This is my best guess - I have not seen a list of banned accounts.
+
+```json
+{
+    ...,
+    "bannedAccounts": [
+        { // <-- Start of banned account
+            "accountIDHash": "SomeHash",
+            "displayName": "Lewd-Geek1",
+            "characterName": "Peaches",
+            "banDate": 1767256380
+        } // <-- End of banned account
+    ],
+    ...
+}
+```
 
 ## Settings Example
 
