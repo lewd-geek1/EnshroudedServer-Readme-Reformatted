@@ -8,6 +8,9 @@
 The settings in here are the difficulty and gameplay customization settings provided by Enshrouded.
 Each section contains the setting's value type, default value, value options, and description.
 
+
+[Reference table](./gameplay_settings/settings_table.md)
+
 ---
 
 ## Contents
