@@ -31,6 +31,11 @@ Role Based Access Control (RBAC) for limiting player permissions based on the pr
 
 ### [Custom Difficulty and Gameplay Settings](./difficulty_and_gameplay_settings.md)
 
+When using the `"Custom"` gameplay preset, these settings are unlocked and customizable.
+
+> [!TIP]
+> Use [the table](./Gameplay%20Settings/settings_table.md) for a quick reference.
+
 ## [Default Server Settings](./enshrouded_server.json)
 
 > [!NOTE]
