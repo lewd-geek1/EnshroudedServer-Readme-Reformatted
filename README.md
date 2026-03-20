@@ -3,7 +3,8 @@
 Enshrouded server settings are stored in a text file named `enshrouded_server.json`
 inside the main Enshrouded server folder.
 
-To make editing the file easier,
+> [!NOTE]
+> To make editing the file easier,
 use a code editor like *Codium*, *VSCode*, *notepad++*, etc...
 These editors color code settings to help pinpoint which areas should be altered,
 vs which need to be left alone.
