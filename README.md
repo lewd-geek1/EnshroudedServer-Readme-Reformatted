@@ -33,6 +33,9 @@ Role Based Access Control (RBAC) for limiting player permissions based on the pr
 
 ## [Default Server Settings](./enshrouded_server.json)
 
+> [!NOTE]
+> When no `enshrouded_server.json` config file is found, running `enshrouded_server.exe` will create it with the following defaults:
+
 ```json
 {
 	"name": "Enshrouded Server",

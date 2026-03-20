@@ -1,343 +1,811 @@
-DIFFICULTY- AND GAMEPLAY SETTINGS
+# DIFFICULTY AND GAMEPLAY SETTINGS
 
+> [!WARNING]
+> Only when `"gameSettingsPreset"` is set to `"Custom"`, can individual gameplay settings can be adjusted. All other options restrict the game settings to the Enshrouded configuration for that preset.
 
-Update 0.7.3.0 (Released 2024-07-29) introduced a number of difficulty- and gameplay settings that can be configured for the dedicated server via the enshrouded_server.json - file.
-Note: when no enshrouded_server.json config file is found, then a fresh file is created with the start of the enshrouded_server.exe.
+The settings in here are Enshrouded's allowed difficulty and gameplay customizations.
+Each section contains the setting's:
 
+- value type
+- default value
+- value options
+- description
 
-Difficulty setting presets
+---
 
-"gameSettingsPreset":
+## Contents
 
-The options are:
-"Default” - The “Default” difficulty setting configures all values to default. It is the direct continuation of how Enshrouded was configured up until update 0.7.3.0 and is the recommended setting for first-time players.
-“Relaxed” - The “Relaxed” preset reduces the amount of enemies and provides players with more resources and loot. This mode targets players who are most interested in base-building and light-hearted adventuring.
-“Hard” - The “Hard” preset increases the amount of enemies and makes them more aggressive to give players a tougher combat experience.
-“Survival” - The “Survival” preset is for those who seek some punishment with additional survival mechanics on top of more aggressive enemies.
-“Custom” - When “Custom” is selected, a long list of individual settings can be tweaked. 
+[Player Settings](#player-settings)
 
+- [Player Health](#player-health)
+- [Player Mana](#player-mana)
+- [Player Stamina Factor](#player-stamina-factor)
+- [Player Body Heat Factor](#player-body-heat-factor)
+- [Player Diving Time Factor](#player-diving-time-factor)
 
-Individual Custom Settings incl. Default values:
-Updated with new settings from version `0.9.0.0`!
+[Difficulty Settings](#difficulty-settings)
 
-Player Health
+-  [Enable Durability](#enable-durability)
+-  [Enable Starving Debuff](#enable-starving-debuff)
+-  [Food Buff Duration Factor](#food-buff-duration-factor)
+-  [From Hunger To Starving](#from-hunger-to-starving)
+-  [Shroud Time Factor](#shroud-time-factor)
+-  [Tombstone Mode](#tombstone-mode)
+-  [Enable Glider Turbulences](#enable-glider-turbulences)
+-  [Weather Frequency](#weather-frequency)
+-  [Fishing Difficulty](#fishing-difficulty)
+-  [Mining Damage Factor](#mining-damage-factor)
+-  [Plant Growth Speed Factor](#plant-growth-speed-factor)
+-  [Resource Drop Stack Amount Factor](#resource-drop-stack-amount-factor)
+-  [Factory Production Speed Factor](#factory-production-speed-factor)
+-  [Perk Upgrade Recycling Factor](#perk-upgrade-recycling-factor)
+-  [Perk Cost Factor](#perk-cost-factor)
+
+[Experience Settings](#experience-settings)
+
+- [Experience Combat Factor](#experience-combat-factor)
+- [Experience Mining Factor](#experience-mining-factor)
+- [Experience Exploration Factor](#experience-exploration-factor)
+
+[Enemy Settings](#enemy-settings)
+
+- [Random Spawner Amount](#random-spawner-amount)
+- [Aggro Pool Amount](#aggro-pool-amount)
+- [Enemy Damage Factor](#enemy-damage-factor)
+- [Enemy Health Factor](#enemy-health-factor)
+- [Enemy Stamina Factor](#enemy-stamina-factor)
+- [Enemy Perception Range Factor](#enemy-perception-range-factor)
+- [Boss Damage Factor](#boss-damage-factor)
+- [Boss Health Factor](#boss-health-factor)
+- [Threat Bonus](#threat-bonus)
+- [Pacify All Enemies](#pacify-all-enemies)
+
+[Animal Settings](#animal-settings)
+
+- [Taming Startle Repercussions](#taming-startle-repercussions)
+
+[Time Settings](#time-settings)
+
+- [Day Time Duration](#day-time-duration)
+- [Night Time Duration](#night-time-duration)
+
+[Shroud Settings](#shroud-settings)
+
+- [Curse Modifier](#curse-modifier)
+
+---
+
+## Player Settings
+
+### Player Health
+
+| Type           | Default | Options        |
+| -------------- | ------- | -------------- |
+| number (float) | `1`     | `0.25` - `4.0` |
+
+```json
 "gameSettings": {
-"playerHealthFactor": 1,
+    ...,
+    "playerHealthFactor": 1, // <-- this
+    ...,
 }
-Scales the max health for players by a factor. Ingame, the factor is represented by a percentage.
-Min value: 0.25
-Max value: 4
+```
+
+#### Player Health Description
+
+Scales the max health for players "by a factor".
 
 
-Player Mana
+### Player Mana
+
+| Type           | Default | Options        |
+| -------------- | ------- | -------------- |
+| number (float) | `1`     | `0.25` - `4.0` |
+
+```json
 "gameSettings": {
-"playerManaFactor": 1,
-}
-Scales the max mana for players by a factor. Ingame, the factor is represented by a percentage.
-Min value: 0.25
-Max value: 4
+    ...,
+    "playerManaFactor": 1, // <-- this
+    ...,
+},
+```
+
+#### Player Mana Description
+
+Scales the max health for players "by a factor".
+Ingame, the factor is represented by a percentage.
+
+For eample, the default value of `1` scales a player's max health by 100% (no change).
 
 
-Player Stamina
+
+### Player Stamina Factor
+
+| Type | Default | Options |
+| -- | -- | -- |
+| percentage | `1` | `0.25` - `4.0` |
+
+```json
 "gameSettings": {
-"playerStaminaFactor": 1,
+    ...,
+    "playerStaminaFactor": 1, // <-- this
+    ...,
 }
-Scales the max stamina for players by a factor. Ingame, the factor is represented by a percentage.
-Min value: 0.25
-Max value: 4
+```
 
+#### Player Stamina Factor Description
 
-Player body heat against cold weather
+Scales players max stamina by the given percentage.
+
+### Player Body Heat Factor
+
+| Type | Default | Options |
+| -- | -- | -- |
+| percentage | `1` | `0.5` - `2.0` |
+
+```json
 "gameSettings": {
-"playerBodyHeatFactor": 1,
+    ...,
+    "playerBodyHeatFactor": 1, // <-- this
+    ...,
 }
-Scales the max amount of available body heat in the player. The higher the factor the longer the player can stay in very cold areas before hypothermia sets in. 
-Min value: 0.5
-Max value: 2
+```
 
+#### Player Body Heat Factor Description
 
-NEW! Diving time
+Scales the max amount of *available body heat* in the player. The higher the factor the longer the player can stay in very cold areas before hypothermia sets in.
+
+### Player Diving Time Factor
+
+| Type | Default | Options |
+| -- | -- | -- |
+| percentage | `1` | `0.5` - `2.0` |
+
+```json
 "gameSettings": {
-"playerDivingTimeFactor": 1,
+    ...,
+    "playerDivingTimeFactor": 1, // <-- this
+    ...,
 }
-Modifies the initial amount of oxygen for players and therefore the time available underwater.
-Min value: 0.5
-Max value: 2
+```
 
+#### Player Diving Time Factor Description
 
-Weapon Durability
+Modifies the initial amount of player oxygen (*time available underwater*).
+
+---
+
+## Difficulty Settings
+
+### Enable Durability
+
+| Type | Default | Options |
+| -- | -- | -- |
+| boolean | `true` | `true` or `false` |
+
+```json
 "gameSettings": {
-"enableDurability": true,
+    ...,
+    "enableDurability": true, // <-- this
+    ...,
 }
-If this setting is set to “false”, weapons don't break anymore.
-Options: true / false
+```
+
+#### Enable Durability Description
+
+Toggle whether weapons should break or not.
+`true` means weapons break, `false` means they don't.
 
 
-Hunger and Starvation
+### Enable Starving Debuff
+
+| Type | Default | Options |
+| -- | -- | -- |
+| boolean | `false` | `true` or `false` |
+
+```json
 "gameSettings": {
-"enableStarvingDebuff": false,
+    ...,
+    "enableStarvingDebuff": false, // <-- this
+    ...,
 }
+```
+
+#### Enable Starving Debuff Description
+
 Enables hunger and starvation. During starvation, the player loses health periodically until death if no food or drink is consumed.
-Options: true / false
 
 
-Food Buff Duration
+### Food Buff Duration Factor
+
+| Type | Default | Options |
+| -- | -- | -- |
+| percentage | `1` | `0.5` - `2.0` |
+
+```json
 "gameSettings": {
-"foodBuffDurationFactor": 1,
+    ...,
+    "foodBuffDurationFactor": 1, // <-- this
+    ...,
 }
-Scales food buff durations. Ingame, the factor is represented by a percentage.
-Min value: 0.5
-Max value: 2
+```
+
+#### Food Buff Duration Factor Description
+
+Scales food buff durations.
 
 
-Hungry State Duration
+
+### From Hunger To Starving
+
+| Type | Default | Options |
+| -- | -- | -- |
+| number | `600000000000` | `300000000000` - `1200000000000` |
+
+```json
 "gameSettings": {
-"fromHungerToStarving": 600000000000,
+    ...,
+    "fromHungerToStarving": 600000000000, // <-- this
+    ...,
 }
-This setting controls the length of the hungry state before the starving sets in. The unit in this setting is nanoseconds. Ingame the time is displayed in minutes.
-Min value: 5 minutes
-Max value: 20 minutes
+```
 
+#### From Hunger To Starving Description
 
-Shroud time duration modifier
+This setting controls the length of the hungry state before starving, **in nanoseconds** (displayed in minutes).
+
+### Shroud Time Factor
+
+| Type | Default | Options |
+| -- | -- | -- |
+| percentage | `1` | `0.5 ` - `2` |
+
+```json
 "gameSettings": {
-"shroudTimeFactor": 1,
+    ...,
+    "shroudTimeFactor": 1, // <-- this
+    ...,
 }
-Scales how long player characters can remain within the Shroud. Ingame, the factor is represented by a percentage.
-Min value: 0.5 
-Max value: 2
+```
+
+#### Shroud Time Factor Description
+
+Scales how long player characters can remain within the Shroud.
 
 
-Tombstone Mode
+### Tombstone Mode
+
+| Type | Default | Options |
+| -- | -- | -- |
+| text | `"AddBackpackMaterials"` | `"AddBackpackMaterials"`, `"Everything"`, or `"NoTombstone"` |
+
+```json
 "gameSettings": {
-"tombstoneMode": "AddBackpackMaterials"
+    ...,
+    "tombstoneMode": "AddBackpackMaterials" // <-- this
+    ...,
 }
+```
+
+#### Tombstone Mode Description
+
 The players can either keep or lose all items from their backpack when dying. In the default setting, they only lose materials. Lost items are stored in a tombstone and can be recovered there.
-Options: AddBackpackMaterials / Everything / NoTombstone 
 
 
-Air turbulences while gliding
+### Enable Glider Turbulences
+
+| Type | Default | Options |
+| -- | -- | -- |
+| boolean | `true` | `true` or `false` |
+
+```json
 "gameSettings": {
-"enableGliderTurbulences": true,
+    ...,
+    "enableGliderTurbulences": true, // <-- this
+    ...,
 }
+```
+
+#### Enable Glider Turbulences Description
+
 If turned off, the glider will not be affected by air turbulences, just as in previous versions of the game.
-Options: true / false
 
 
-Weather phenomena frequency
+### Weather Frequency
+
+| Type | Default | Options |
+| -- | -- | -- |
+| text | `"Normal"` | `"Disabled"`, `"Rare"`, `"Normal"`, or `"Often"` |
+
+```json
 "gameSettings": {
-"weatherFrequency": "Normal",
+    ...,
+    "weatherFrequency": "Normal", // <-- this
+    ...,
 }
+```
+
+#### Weather Frequency Description
+
 This setting allows defining how often new weather phenomena appear in the game world.
-Options: Disabled / Rare / Normal / Often
 
 
-NEW! Fishing difficulty
+### Fishing Difficulty
+
+| Type | Default | Options |
+| -- | -- | -- |
+| text | `"Normal"` | `"VeryEasy"`, `"Easy"`, `"Normal"`, `"Hard"`, and `"VeryHard"` |
+
+```json
 "gameSettings": {
-"fishingDifficulty": "Normal",
+    ...,
+    "fishingDifficulty": "Normal", // <-- this
+    ...,
 }
+```
+
+#### Fishing Difficulty Description
+
 This setting defines the strength of the fish during the fishing minigame. The stronger a fish is, the longer the minigame will proceed.
-Options: VeryEasy, Easy, Normal, Hard, VeryHard
 
 
-Mining Effectiveness
+### Mining Damage Factor
+
+| Type | Default | Options |
+| -- | -- | -- |
+| percentage | `1` | `0.5` - `2.0` |
+
+```json
 "gameSettings": {
-"miningDamageFactor": 1,
+    ...,
+    "miningDamageFactor": 1, // <-- this
+    ...,
 }
-This scales the mining damage. A higher mining damage leads to increased terraforming and more yield of resources per hit. Ingame, the factor is represented by a percentage.
-Min value: 0.5 
+```
+
+#### Mining Damage Factor Description
+
+This scales the mining damage. A higher mining damage leads to increased terraforming and more yield of resources per hit.
+
+
+### Plant Growth Speed Factor
+
+| Type | Default | Options |
+| -- | -- | -- |
+| percentage | `1` | `0.25` - `2.0` |
+
+```json
+"gameSettings": {
+    ...,
+    "plantGrowthSpeedFactor": 1, // <-- this
+    ...,
+}
+```
+
+#### Plant Growth Speed Factor Description
+
+Scales the value of the plant growth speed.
 Max value: 2
 
 
-Plant Growth Speed
+### Resource Drop Stack Amount Factor
+
+| Type | Default | Options |
+| -- | -- | -- |
+| percentage | `1` | `0.25` - `2.0` |
+
+```json
 "gameSettings": {
-"plantGrowthSpeedFactor": 1,
+    ...,
+    "resourceDropStackAmountFactor": 1, // <-- this
+    ...,
 }
-Scales the value of the plant growth speed. Ingame, the factor is represented by a percentage.
-Min value: 0.25 
-Max value: 2
+```
+
+#### Resource Drop Stack Amount Factor Description
+
+Scales the amount of materials per loot stack in chests, defeated enemies etc.
 
 
-Resources Gain Modifier
+### Factory Production Speed Factor
+
+| Type | Default | Options |
+| -- | -- | -- |
+| percentage | `1` | `0.25` - `2.0` |
+
+```json
 "gameSettings": {
-"resourceDropStackAmountFactor": 1,
+    ...,
+    "factoryProductionSpeedFactor": 1, // <-- this
+    ...,
 }
-Scales the amount of materials per loot stack in chests, defeated enemies etc. Ingame, the factor is represented by a percentage.
-Min value: 0.25 
-Max value: 2
+```
+
+#### Factory Production Speed Factor Description
+
+Scales the length of production times for workshop items.
 
 
-Workstation Effectiveness
+### Perk Upgrade Recycling Factor
+
+| Type | Default | Options |
+| -- | -- | -- |
+| percentage | `0.100000` | `0` - `1` |
+
+```json
 "gameSettings": {
-"factoryProductionSpeedFactor": 1,
+    ...,
+    "perkUpgradeRecyclingFactor": 0.100000, // <-- this
+    ...,
 }
-Scales the length of production times for workshop items. Ingame, the factor is represented by a percentage.
-Min value: 0.25 
-Max value: 2
+```
+
+#### Perk Upgrade Recycling Factor Description
+
+Scales the amount of Runes that are returned to you when salvaging upgraded weapons.
 
 
-Weapon Recycling Yield Modifier
+### Perk Cost Factor
+
+| Type | Default | Options |
+| -- | -- | -- |
+| percentage | `1` | `0.25` - `2` |
+
+```json
 "gameSettings": {
-"perkUpgradeRecyclingFactor": 0.100000,
+    ...,
+    "perkCostFactor": 1, // <-- this
+    ...,
 }
-Scales the amount of Runes that are returned to you when salvaging upgraded weapons. Ingame, the factor is represented by a percentage.
-Min value: 0 
-Max value: 1
+```
 
+#### Perk Cost Factor Description
 
-Weapon Upgrading Costs
+Scales the amount of Runes required for upgrading weapons.
+
+## Experience Settings
+
+### Experience Combat Factor
+
+| Type | Default | Options |
+| -- | -- | -- |
+| percentage | `1` | `0.25` - `2.0` |
+
+```json
 "gameSettings": {
-"perkCostFactor": 1,
+    ...,
+    "experienceCombatFactor": 1, // <-- this
+    ...,
 }
-Scales the amount of Runes required for upgrading weapons. Ingame, the factor is represented by a percentage.
-Min value: 0.25 
-Max value: 2
+```
+
+#### Experience Combat Factor Description
+
+Scales the amount of XP received through combat.
 
 
-Combat Experience Modifier
+### Experience Mining Factor
+
+| Type | Default | Options |
+| -- | -- | -- |
+| percentage | `1` | `0.0` - `2.0` |
+
+```json
 "gameSettings": {
-"experienceCombatFactor": 1,
+    ...,
+    "experienceMiningFactor": 1, // <-- this
+    ...,
 }
-Scales the amount of XP received through combat. Ingame, the factor is represented by a percentage.
-Min value: 0.25 
-Max value: 2
+```
+
+#### Experience Mining Factor Description
+
+Scales the amount of XP received by mining resources.
 
 
-Mining Experience Modifier
+### Experience Exploration Factor
+
+| Type | Default | Options |
+| -- | -- | -- |
+| percentage | `1` | `0.25` - `2.0` |
+
+```json
 "gameSettings": {
-"experienceMiningFactor": 1,
+    ...,
+    "experienceExplorationQuestsFactor": 1, // <-- this
+    ...,
 }
-Scales the amount of XP received by mining resources. Ingame, the factor is represented by a percentage.
-Min value: 0 
-Max value: 2
+```
 
+#### Experience Exploration Factor Description
 
-Exploration Experience Modifier
+Scales the amount of XP received by exploring and completing quests
+
+---
+
+## Enemy Settings
+
+### Random Spawner Amount
+
+| Type | Default | Options |
+| -- | -- | -- |
+| text | `"Normal"` | `"Few"`, `"Normal"`, `"Many"`, or `"Extreme"` |
+
+```json
 "gameSettings": {
-"experienceExplorationQuestsFactor": 1,
+    ...,
+    "randomSpawnerAmount": "Normal" // <-- this
+    ...,
 }
-Scales the amount of XP received by exploring and completing quests. Ingame, the factor is represented by a percentage.
-Min value: 0.25 
-Max value: 2
+```
+
+#### Random Spawner Amount Description
+
+This setting controls the amount of enemies in the world.
 
 
-Enemy Amount
+### Aggro Pool Amount
+
+| Type | Default | Options |
+| -- | -- | -- |
+| text | `"Normal"` | `"Few"`, `"Normal"`, `"Many"`, or `"Extreme"` |
+
+```json
 "gameSettings": {
-"randomSpawnerAmount": "Normal"
+    ...,
+    "aggroPoolAmount": "Normal" // <-- this
+    ...,
 }
-This setting controls the amount of enemies in the world. 
-Options: Few / Normal / Many / Extreme 
+```
 
+#### Aggro Pool Amount Description
 
-Modifier for simultaneous Enemy Attacks
+This setting controls how many enemies are allowed to attack at the same time.
+
+### Enemy Damage Factor
+
+| Type | Default | Options |
+| -- | -- | -- |
+| percentage | `1` | `0.25` - `5.0` |
+
+```json
 "gameSettings": {
-"aggroPoolAmount": "Normal"
+    ...,
+    "enemyDamageFactor": 1, // <-- this
+    ...,
 }
-This setting controls how many enemies are allowed to attack at the same time. Ingame, the factor is represented by a percentage.
-Options: Few / Normal / Many / Extreme
+```
 
+#### Enemy Damage Factor Description
 
-Enemy Damage
+Scales all enemy damage *except for bosses*.
+
+For example, the default value of `1` scales non-boss enemy damage to `100%` or `no change`.
+
+### Enemy Health Factor
+
+| Type | Default | Options |
+| -- | -- | -- |
+||||
+
+```json
 "gameSettings": {
-"enemyDamageFactor": 1,
+    ...,
+    "enemyHealthFactor": 1, // <-- this
+    ...,
 }
-Scales all enemy damage by this value - except for bosses. Ingame, the factor is represented by a percentage.
-Min value: 0.25 
-Max value: 5
+```
 
+#### Enemy Health Factor Description
 
-Enemy Health
-"gameSettings": {
-"enemyHealthFactor": 1,
-}
 Scales all enemy health by this value - except for bosses. Ingame, the factor is represented by a percentage.
 Min value: 0.25 
 Max value: 4
 
+### Enemy Stamina Factor
 
-Enemy Stun Modifier
+| Type | Default | Options |
+| -- | -- | -- |
+| percentage | `1` | `0.5` - `2.0` |
+
+```json
 "gameSettings": {
-"enemyStaminaFactor": 1,
+    ...,
+    "enemyStaminaFactor": 1, // <-- this
+    ...,
 }
-Scales all enemy stamina by this value. It will take longer to stun enemies with a higher enemy stamina. This excludes bosses. Ingame, the factor is represented by a percentage.
-Min value: 0.5 
-Max value: 2
+```
+#### Enemy Stamina Factor Description
+
+Scales all enemy stamina by this value. It will take longer to stun enemies with a higher enemy stamina. This excludes bosses.
 
 
-Enemy Perception Modifier
+
+
+### Enemy Perception Range Factor
+
+| Type | Default | Options |
+| -- | -- | -- |
+| percentage | `1` | `0.5` - `2.0` |
+
+```json
 "gameSettings": {
-"enemyPerceptionRangeFactor": 1,
+    ...,
+    "enemyPerceptionRangeFactor": 1, // <-- this
+    ...,
 }
-Scales how far enemies can see and hear the player. This excludes bosses. Ingame, the factor is represented by a percentage.
-Min value: 0.5 
-Max value: 2
+```
+
+#### Enemy Perception Range Factor Description
+
+Scales how far enemies can see and hear the player. This excludes bosses.
 
 
-Boss Damage Modifier
+### Boss Damage Factor
+
+| Type | Default | Options |
+| -- | -- | -- |
+| percentage | `1` | `0.2` - `5.0` |
+
+```json
 "gameSettings": {
-"bossDamageFactor": 1,
+    ...,
+    "bossDamageFactor": 1, // <-- this
+    ...,
 }
-This setting scales the damage of boss attacks. Ingame, the factor is represented by a percentage.
-Min value: 0.2 
-Max value: 5
+```
+
+#### Boss Damage Factor Description
+
+This setting scales the damage of boss attacks.
 
 
-Boss Health Modifier
+
+### Boss Health Factor
+
+| Type | Default | Options |
+| -- | -- | -- |
+| percentage | `1` | `0.2` - `5.0` |
+
+```json
 "gameSettings": {
-"bossHealthFactor": 1,
+    ...,
+    "bossHealthFactor": 1, // <-- this
+    ...,
 }
-Scales all health of bosses by this value. Ingame, the factor is represented by a percentage.
-Min value: 0.2 
-Max value: 5
+```
+
+#### Boss Health Factor Description
+
+Scales all health of bosses by this value.
 
 
-Enemy Attacks Modifier
+### Threat Bonus
+
+| Type | Default | Options |
+| -- | -- | -- |
+| percentage | `1` | `0.25` - `4.0` |
+
+```json
 "gameSettings": {
-"threatBonus": 1,
+    ...,
+    "threatBonus": 1, // <-- this
+    ...,
 }
-Scales the frequency of enemy attacks. This excludes bosses. Ingame, the factor is represented by a percentage.
-Min value: 0.25
-Max value: 4
+```
+
+#### Threat Bonus Description
+
+Scales the frequency of enemy attacks. This *excludes* bosses. 
 
 
-Pacified Enemies
+
+### Pacify All Enemies
+
+| Type | Default | Options |
+| -- | -- | -- |
+| boolean | `false` | `true` or `false` |
+
+```json
 "gameSettings": {
-"pacifyAllEnemies": false,
+    ...,
+    "pacifyAllEnemies": false, // <-- this
+    ...,
 }
+```
+
+#### Pacify All Enemies Description
+
 If turned on, enemies won't attack the players until they are attacked. This excludes bosses.
 Options: true / false
 
 
-Taming failure repercussions
+---
+
+## Animal Settings
+
+### Taming Startle Repercussions
+
+> [!NOTE]
+> Progress is visualized by hearts in the game.
+
+| Type | Default | Options |
+| -- | -- | -- |
+| Text | `"LoseSomeProgress"` | `"KeepProgress"`, `"LoseSomeProgress"`, or `"LoseAllProgress"` |
+
+```json
 "gameSettings": {
-"tamingStartleRepercussion": "LoseSomeProgress",
+    ...,
+    "tamingStartleRepercussion": "LoseSomeProgress", // <-- this
+    ...,
 }
-This setting allows defining how the game reacts when the player startles the wildlife during taming. Progress is visualized by hearts in the game.
-Options: KeepProgress / LoseSomeProgress / LoseAllProgress
+```
 
+#### Taming Startle Repercussions Description
 
-Daytime 
+This setting allows defining how the game reacts when the player startles the wildlife during taming.
+
+---
+
+## Time Settings
+
+### Day Time Duration
+
+| Type   | Default         | Options                          |
+| ------ | --------------- | -------------------------------- |
+| number | `1800000000000` | `120000000000` - `3600000000000` |
+
+```json
 "gameSettings": {
-"dayTimeDuration": 1800000000000
+    ...,
+    "dayTimeDuration": 1800000000000, // <-- this
+    ...,
 }
-Scales the length of daytime. A smaller value equals shorter daytime. The unit is nanoseconds. Ingame, the time is displayed in minutes.
-Min value: 2 minutes
-Max value: 60 minutes
+```
 
+#### Day Time Duration Description
 
-Nighttime 
+Scales the length of daytime **in nanoseconds** (displayed in minutes).
+
+### Night Time Duration
+
+| Type   | Default        | Options                          |
+| ------ | -------------- | -------------------------------- |
+| number | `720000000000` | `120000000000` - `3600000000000` |
+
+```json
 "gameSettings": {
-"nightTimeDuration": 720000000000
+    ...,
+    "nightTimeDuration": 720000000000, // <-- this
+    ...,
 }
-Scales the length of daytime. A smaller value equals a shorter nighttime. The unit is nanoseconds. Ingame, the time is displayed in minutes.
-Min value: 2 minutes
-Max value: 60 minutes
+```
 
+#### Night Time Duration Description
 
-Modify Shroud curse
+Scales the length of nightime **in nanoseconds** (displayed in minutes).
+
+---
+
+## Shroud Settings
+
+### Curse Modifier
+
+> [!NOTE]
+> the `"Easy"` option turns off the modifier completely.
+
+| Type | Default    | Options                         |
+| ---- | ---------- | ------------------------------- |
+| text | `"Normal"` | `"Easy"`, `"Normal"`, `"Hard"`, |
+
+```json
 "gameSettings": {
-"curseModifier": "Normal"
+    ...,
+    "curseModifier": "Normal" // <-- this
+    ...,
 }
+```
+
+#### Curse Modifier Description
+
 This setting allows switching the Shroud curse off or modifying the chance for receiving the curse when being attacked by the corresponding enemies.
-Options: Easy (which turns the feature off) / Normal / Hard (which doubles the chance relative to normal)
-
