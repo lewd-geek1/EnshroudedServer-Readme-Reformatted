@@ -212,17 +212,17 @@ Allow or deny text chat on the server. Choices are `true` or `false`.
 
 ```json
 {
-	"name": "Lewd Geeks Gaming",
-	"saveDirectory": "C:/Enshrouded/GameData",
-	"logDirectory": "C:/Enshrouded/GameData/History",
-	"ip": "192.168.1.224",
-	"queryPort": 32413,
-	"slotCount": 4,
-	"tags": ["LookingForPlayers", "English", "BaseBuilding"],
-	"voiceChatMode": "Global",
-	"enableVoiceChat": false,
-	"enableTextChat": true,
-	"gameSettingsPreset": "Custom",
+  "name": "Lewd Geeks Gaming",
+  "saveDirectory": "C:/Enshrouded/GameData",
+  "logDirectory": "C:/Enshrouded/GameData/History",
+  "ip": "192.168.1.224",
+  "queryPort": 32413,
+  "slotCount": 4,
+  "tags": ["LookingForPlayers", "English", "BaseBuilding"],
+  "voiceChatMode": "Global",
+  "enableVoiceChat": false,
+  "enableTextChat": true,
+  "gameSettingsPreset": "Custom",
   "gameSettings": {}, // See Gameplay Settings
   "userGroups": [], // See User Groups
   "bannedAccounts": [] // See Banned Accounts

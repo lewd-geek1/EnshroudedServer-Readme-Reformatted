@@ -1,17 +1,19 @@
-# DIFFICULTY AND GAMEPLAY SETTINGS
+# GAMEPLAY SETTINGS
 
 [Enshrouded Server](../README.md) > Gameplay Settings
 
-The settings in here are the difficulty and gameplay customization settings provided by Enshrouded.
-Each section contains the setting's value type, default value, value options, and description.
 
-
-[Reference table](./settings_table.md)
+The settings in here affect in-game features and mechanics.
+They include settings for
+player stats,
+enemy stats,
+environment features,
+and more.
 
 ---
-- [Gameplay Preset](#gameplay-preset)
+- [Game Settings Preset](#game-settings-preset)
   - [`gameSettingsPreset`](#gamesettingspreset)
-- [Gameplay Settings](#gameplay-settings)
+- [Gameplay Settings](#gameplay-settings-1)
   - [Player Settings](#player-settings)
   - [Difficulty Settings](#difficulty-settings)
   - [Experience Settings](#experience-settings)
@@ -19,16 +21,14 @@ Each section contains the setting's value type, default value, value options, an
   - [Animal Settings](#animal-settings)
   - [Time Settings](#time-settings)
   - [Shroud Settings](#shroud-settings)
+- [Game Settings Example](#game-settings-example)
 
 ---
 
-## Gameplay Preset
+## Game Settings Preset
 
 Before any customizing can be performed, a settings preset needs to be selected.
-**The selected preset takes precedence over individually configured settings.**
-Yes, this is backwards from what one would expect.
-No, it does not make sense from a configuration standpoint.
-Hence, the warnings and cautions and notes about choosing the `"Custom"` preset.
+**The selected preset overrides individually configured settings.**
 
 ### `gameSettingsPreset`
 
@@ -40,13 +40,11 @@ Hence, the warnings and cautions and notes about choosing the `"Custom"` preset.
 "gameSettingsPreset": "Default",
 ```
 
-> [!important]
-> To customize gameplay, this settings should be set to `"Custom"`
+A named game setting option.
+Any settings preconfigured in the preset will overrule individually configured game settings.
 
-A named difficulty and gameplay option that overrules any individually configured gameplay setting.
-
-| Type | Default |
-| --- | --- |
+| Type | Default     |
+| ---- | ----------- |
 | text | `"Default"` |
 
 #### `gameSettingsPreset` Options
@@ -576,3 +574,49 @@ This setting allows switching the Shroud curse off or modifying the chance for r
 | Type | Default    | Options                         |
 | ---- | ---------- | ------------------------------- |
 | text | `"Normal"` | `"Easy"`, `"Normal"`, `"Hard"`, |
+
+## Game Settings Example
+
+
+```json
+"gameSettingsPreset": "Custom",
+"gameSettings": {
+    "playerHealthFactor": 2.0,  // 2x original
+    "playerManaFactor": 2.0,  // 2x original
+    "playerStaminaFactor": 2.0,  // 2x original
+    "playerBodyHeatFactor": 2.0,  // 2x original
+    "playerDivingTimeFactor": 2.0,  // 2x original
+    "enableDurability": false, // items don't break
+    "enableStarvingDebuff": false, // no starving
+    "foodBuffDurationFactor": 2.0, // 2x original
+    "fromHungerToStarving": 600000000000, // doesn't matter, no starving
+    "shroudTimeFactor": 2.0, // 2x original
+    "tombstoneMode": "NoTombstone",  // nothing lost
+    "enableGliderTurbulences": false, // smooth gliding
+    "weatherFrequency": "Disabled", // no weather
+    "fishingDifficulty": "VeryEasy", // as easy as possible
+    "miningDamageFactor": 2.0, // 2x original
+    "plantGrowthSpeedFactor": 2.0, // 2x original
+    "resourceDropStackAmountFactor": 2.0, // 2x original
+    "factoryProductionSpeedFactor": 2.0, // 2x original
+    "perkUpgradeRecyclingFactor": 1.0, // max back
+    "perkCostFactor": 0.25, // least cost
+    "experienceCombatFactor": 2.0, // 2x original
+    "experienceMiningFactor": 2.0, // 2x original
+    "experienceExplorationQuestsFactor": 2.0, // 2x original
+    "randomSpawnerAmount": "Few", // least amount
+    "aggroPoolAmount": "Few", // least amount
+    "enemyDamageFactor": 0.5, // 1/2 original
+    "enemyHealthFactor": 0.5, // 1/2 original
+    "enemyStaminaFactor": 0.5, // 1/2 original
+    "enemyPerceptionRangeFactor": 0.5, // 1/2 original
+    "bossDamageFactor": 0.5, // 1/2 original
+    "bossHealthFactor": 0.5, // 1/2 original
+    "threatBonus": 0.5, // 1/2 original
+    "pacifyAllEnemies": true, // non-aggressive enemies
+    "tamingStartleRepercussion": "KeepProgress", // least effort
+    "dayTimeDuration": 3600000000000, // max daytime
+    "nightTimeDuration": 120000000000, // min nighttime
+    "curseModifier": "Easy" // no curse modifier
+},
+```
