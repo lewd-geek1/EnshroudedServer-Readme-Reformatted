@@ -8,43 +8,113 @@ Server settings refer to settings which affect communication between the host co
 Be a decent person, **don't use offensive language**.
 
 ---
+- [`name`](#name)
+- [`saveDirectory`](#savedirectory)
+- [`logDirectory`](#logdirectory)
+- [`ip`](#ip)
+- [`slotCount`](#slotcount)
+- [`tags`](#tags)
+  - [Allowed Tags](#allowed-tags)
+  - [tags Examples](#tags-examples)
+- [`voiceChatMode`](#voicechatmode)
+- [`enableVoiceChat`](#enablevoicechat)
+- [`enableTextChat`](#enabletextchat)
+- [`gameSettingsPreset`](#gamesettingspreset)
+  - [`gameSettingsPreset` Options](#gamesettingspreset-options)
+- [`userGroups`](#usergroups)
 
-## Contents
-
-- [Contents](#contents)
-- [Settings Table](#settings-table)
-- [Additional Information](#additional-information)
-  - [`tags` Details](#tags-details)
-  - [`gameSettingsPreset` Details](#gamesettingspreset-details)
-  - [`bannedAccounts` Details](#bannedaccounts-details)
-- [Settings Example](#settings-example)
 ---
-
-## Settings Table
 
 >[!WARNING]
 >Changes to `ip` and `queryPort` will directly affect access to the server
 
 
-| Setting              | Description                                                                                                                     | Type                                                               | Default                                   | Example                                            |
-| -------------------- | ------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------ | ----------------------------------------- | -------------------------------------------------- |
-| `name`               | A custom name displayed on the server join menu and in game                                                                     | text                                                               | `"Enshrouded Server"`                     | `"Lewd Geeks Gaming"`                              |
-| `saveDirectory`      | The full path to where Enshrouded should store save files                                                                       | path                                                               | `"./savegame"`                            | `"C:/Enshrouded/GameData"`                         |
-| `logDirectory`       | The full path to where Enshrouded should store log files                                                                        | path                                                               | `"./logs"`                                | `"C:/Enshrouded/GameData/Logs"`                    |
-| `ip`                 | The IP address allowed t0o interact with the Enshrouded server                                                                  | text                                                               | `"0.0.0.0"`                               | `"192.168.1.224"`                                  |
-| `queryPort`          | The device communications port for the Enshrouded server                                                                        | number                                                             | `15637`                                   | `324211`                                           |
-| `slotCount`          | Controls the maximum number of players allowed on the server *at the same time*                                                 | number (1 - 16)                                                    | `16`                                      | `4`                                                |
-| `tags`               | Help other players find a fitting server to join by using currated search tags. [read more](#tags-details)                      | list of text                                                       | `"[]"` (empty)                            | `["LookingForPlayers", "English", "BaseBuilding"]` |
-| `voiceChatMode`      | If voice chat should be heard by everyone or just nearby players. Choices are `"Proximity"` or `"Global"`                       | text                                                               | `"Proximity"`                             | `"Global"`                                         |
-| `enableVoiceChat`    | Allow or deny voice chat on the server. Choices are `true` or `false`                                                           | boolean                                                            | `false`                                   | `true`                                             |
-| `enableTextChat`     | Allow or deny text chat on the server. Choices are `true` or `false`                                                            | boolean                                                            | `false`                                   | `true`                                             |
-| `gameSettingsPreset` | A named difficulty and gameplay option. [read more](#gamesettingspreset-details)                                                | text                                                               | `"Default"`                               | `"Custom"`                                         | see |
-| `userGroups`         | Provide predefined and custom logon groups with individually selected player permissions. [read more](./permission_settings.md) | list of group settings                                             | `["Admin", "Friend", "Guest", "Visitor"]` | `["Admin", "Friend", "Guild"]`                     |
-| `bannedAccounts`     | A list of players not allowed to join the server. [read more](#bannedaccounts-details)                                          | list of `accountIDHash`, `displayName`, `characterName`, `banDate` | `[]` (empty)                              |                                                    |
+## `name` 
 
-## Additional Information
+```json
+"name": "Enshrouded Server",
+```
 
-### `tags` Details
+A custom name displayed on the server join menu and in-game
+
+| Type | Default |
+| --- | --- |
+| text | `"Enshrouded Server"` |
+
+
+## `saveDirectory`
+
+```json
+"saveDirectory": "./savegame",
+```
+
+The full path to where Enshrouded should store save files
+
+| Type | Default |
+| --- | --- |
+| path | `"./savegame"` |
+
+## `logDirectory`
+
+```json
+"logDirectory": "./logs",
+```
+
+The full path to where Enshrouded should store log files
+
+| Type | Default |
+| --- | --- |
+| path | `"./logs"` |
+
+
+## `ip`
+
+```json
+"ip": "0.0.0.0",
+```
+
+The IP address allowed t0o interact with the Enshrouded server
+
+| Type | Default |
+| --- | --- |
+| text | `"0.0.0.0"` |
+
+
+| `queryPort`
+
+```json
+"queryPort": 15637,
+```
+
+The device communications port for the Enshrouded server
+
+| Type | Default |
+| --- | --- |
+| number | `15637` |
+
+
+## `slotCount`
+
+> [!NOTE]
+> The maximum number of players Enshrouded allows on a server is 16.
+
+```json
+"slotCount": 16,
+```
+
+Controls the maximum number of players allowed on the server *at the same time*.
+
+| Type | Default |
+| --- | --- |
+| number | `16` |
+
+## `tags`
+
+```json
+"tags": [
+
+],
+```
 
 Tags help other players find a fitting server to join by using currated options to describe:
 
@@ -52,36 +122,33 @@ Tags help other players find a fitting server to join by using currated options 
 - what languages are spoken on the server and 
 - if there is a main gameplay focus
 
-> [!IMPORTANT]
-> When adding `tags` to your server settings, **do not** put a comma (`,`) after the last tag in the list.
+| Type | Default |
+| --- | --- |
+| list of text | `"[]"` (empty) |
 
-#### Allowed Tags
+### Allowed Tags
 
-| Name                  | Category    |
-| --------------------- | ----------- |
-| `"LookingForPlayers"` | Looking For |
-| `"BaseBuilding"`      | Gameplay    |
-| `"Exploration"`       | Gameplay    |
-| `"Roleplay"`          | Gameplay    |
-| `"Chinese"`           | Language    |
-| `"Italian"`           | Language    |
-| `"Portuguese"`        | Language    |
-| `"Thai"`              | Language    |
-| `"English"`           | Language    |
-| `"Japanese"`          | Language    |
-| `"Russian"`           | Language    |
-| `"French"`            | Language    |
-| `"Korean"`            | Language    |
-| `"Spanish"`           | Language    |
-| `"Turkish"`           | Language    |
-| `"German"`            | Language    |
-| `"Polish"`            | Language    |
-| `"Taiwanese"`         | Language    |
-| `"Ukrainian"`         | Language    |
+Tags are not freeform.
+A tag must be one of the following in order to be visible by players.
 
-#### tags Examples
+#### Looking for tags
 
-##### All tags on one line
+`"LookingForPlayers"`
+
+#### Gameplay tags
+
+`"BaseBuilding"`, `"Exploration"`, `"Roleplay"`
+
+#### Language tags
+
+`"Chinese"`, `"English"`, `"French"`, `"German"`,
+`"Italian"`, `"Japanese"`, `"Korean"`, `"Polish"`,
+`"Portuguese"`, `"Russian"`, `"Spanish"`, `"Thai"`,
+`"Taiwanese"`, `"Turkish"`, `"Ukrainian"`
+
+### tags Examples
+
+#### All tags on one line
 
 ```javascript
 {
@@ -91,7 +158,7 @@ Tags help other players find a fitting server to join by using currated options 
 }
 ```
 
-##### One tag per line
+#### One tag per line
 
 ```javascript
 {
@@ -105,85 +172,101 @@ Tags help other players find a fitting server to join by using currated options 
 }
 ```
 
-### `gameSettingsPreset` Details
+
+## `voiceChatMode`
+
+```json
+"voceChatMode": "Proximity",
+```
+
+If voice chat should be heard by everyone or just nearby players.
+Choices are `"Proximity"` or `"Global"`.
+
+| Type | Description |
+| --- | --- |
+| text | `"Proximity"` |
+
+## `enableVoiceChat`
+
+```json
+"enableVoiceChat": false,
+```
+
+Allow or deny voice chat on the server. Choices are `true` or `false`.
+
+| Type | Description |
+| --- | --- |
+| boolean | `false` |
+
+
+## `enableTextChat`
+
+```json
+"enableTextChat": false,
+```
+
+Allow or deny text chat on the server. Choices are `true` or `false`.
+
+| Type | Description |
+| --- | --- |
+| boolean | `false` |
+
+
+## `gameSettingsPreset`
 
 > [!important]
 > To customize gameplay, this settings should be set to `"Custom"`
 
-#### `gameSettingsPreset` Options
-
-| Value          | Use-Case                                    | Description                                         |
-| -------------- | ------------------------------------------- | --------------------------------------------------- |
-| `"Default"`    | First-time players                          | Enshrouded default                                  |
-| `"Relaxed"`    | Base-building and light-hearted adventuring | more loot, less enemies                             |
-| `"Hard"`       | Tougher combat experience                   | more enemies, higher enemy aggression               |
-| `"Survival"`   | Those who seek some punishment              | Hard \+ survival mechanics                          |
-| **`"Custom"`** | **Fully custom gameplay and difficulty**    | **see [Gameplay Settings](./gameplay/README.md)** |
-
-#### `gameSettingsPreset` example
-
 ```json
-{
-    ...
-    "gameSettingsPreset": "Custom",
-    ...
-}
+"gameSettingsPreset": "Default",
 ```
 
-### `bannedAccounts` Details
+A named difficulty and gameplay option.
 
-> [!note]
-> Update `0.9.0.0` introduced the option to permanently ban individual players from a server.
+| Type | Default |
+| --- | --- |
+| text | `"Default"` |
 
-> [!TIP]
-> The list of banned players can be accessed in-game via the `Social` tab where players can be added or removed.
->
-> Unless you already have a list of players to ban, its best to manage players in-game.
 
-`bannedAccounts` is a list of collections including:
+### `gameSettingsPreset` Options
 
-1. `accountIDHash` (privacy protected Steam account identifier)
-2. `displayName` (a.k.a Steam account name)
-3. `characterName`
-4. `banDate` (as unix timestamp)
-
-#### `bannedAccounts` Example
-
-> [!WARNING]
-> This is my best guess - I have not seen a list of banned accounts.
+#### `"Default"`
 
 ```json
-{
-    ...,
-    "bannedAccounts": [
-        { // <-- Start of banned account
-            "accountIDHash": "SomeHash",
-            "displayName": "Lewd-Geek1",
-            "characterName": "Peaches",
-            "banDate": 1767256380
-        } // <-- End of banned account
-    ],
-    ...
-}
+"gameSettingsPreset": "Default",
 ```
 
-## Settings Example
+**Use case**: First-time players
+**Details**: Enshrouded default                                  |
+
+#### `"Relaxed"`
+
+**Use case**: Base-building and light-hearted adventuring
+**Details**: more loot, less enemies
+
+#### `"Hard"`
+
+**Use case**: Tougher combat experience
+**Details**: more enemies, higher enemy aggression
+
+#### `"Survival"`
+
+**Use case**: Those who seek some punishment
+**Details**: Hard \+ survival mechanics
+
+#### **`"Custom"`**
+
+**Use case**: **Fully custom gameplay and difficulty**
+**Details**: **see [Gameplay Settings](./gameplay/README.md)**
+
+
+## `userGroups`
 
 ```json
-{
-	"name": "Lewd Geeks Gaming",
-	"saveDirectory": "C:/Enshrouded/GameData",
-	"logDirectory": "C:/Enshrouded/GameData/History",
-	"ip": "192.168.1.224",
-	"queryPort": 32413,
-	"slotCount": 4,
-	"tags": ["LookingForPlayers", "English", "BaseBuilding"],
-	"voiceChatMode": "Global",
-	"enableVoiceChat": false,
-	"enableTextChat": true,
-	"gameSettingsPreset": "Custom",
-    "gameSettings": {...}, // See Gameplay Settings
-    "userGroups": [...], // See Permission Settings
-    "bannedAccounts": []
-}
+"userGroups": [
+
+]
 ```
+
+Provide predefined and custom logon groups with individually selected player permissions.
+See the [User Groups](./user_groups/README.md) README for more information.
