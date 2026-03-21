@@ -6,8 +6,12 @@
 Player permissions for playing on dedicated servers are handled via user groups.
 Each group can be set up in the `enshrouded_server.json` settings file with a unique configuration of permissions and access granted to the logged-in player. 
 
-
 ---
+
+> [!NOTE]
+> These settings are ordered according to my personal workflow,
+> not the default order they appear in `enshrouded_settings.json`.
+
 
 - [Group Options](#group-options)
   - [Reserved Slots](#reserved-slots)
@@ -24,50 +28,33 @@ Each group can be set up in the `enshrouded_server.json` settings file with a un
 
 ## Group Options
 
-```json
-
-"userGroups" = [
-    ...
-],
-
-```
-
 There are 6 settings configured for user groups.
 
-> [!NOTE]
-> These settings are ordered according to my personal workflow,
-> not the default order they appear in `enshrouded_settings.json`.
-
 ### Reserved Slots
-
-Limits a portion of the server's `slotCount` to login as this group only
 
 | Type   | Options                 |
 | ------ | ----------------------- |
 | number | 1 - `slotCount` setting |
 
+Limits a portion of the server's `slotCount` to login as this group only
+
+> [!CAUTION]
+> Reserving 0 slots for an *admin* group could leave your server without the ability to kick/ban other players.
+
 ```json
-"userGroups": [
-    ...,
-    "reservedSlots": 0, // <-- this
-    ...,
-]
+"reservedSlots": 0
 ```
 
 ### Can Edit World
-
-Terraform or destroy areas in the open world
 
 | Type    | Options           |
 | ------- | ----------------- |
 | boolean | `true` or `false` |
 
+Terraform or destroy areas in the open world
+
 ```json
-"userGroups": [
-    ...,
-    "canEditWorld": false, // <-- this
-    ...,
-]
+"canEditWorld": false
 ```
 
 ### Can Access Inventories
@@ -75,51 +62,38 @@ Terraform or destroy areas in the open world
 > [!warning]
 >`canAccessInventories` refers to **objects in player bases**, it does *not* prevent access to treasure chests in the open world.
 
-Storage chests, factories, collections and other containers with potentially valuable items
-
 | Type    | Options           |
 | ------- | ----------------- |
 | boolean | `true` or `false` |
 
+Storage chests, factories, collections and other containers with potentially valuable items
 
 ```json
-"userGroups": [
-    ...,
-    "canAccessInventories": false, // <-- this
-    ...,
-]
+"canAccessInventories": false
 ```
 
 ### Can Edit Base
 
-Terraforming, building and removing constructions in player bases (also includes adding and removing water)
-
 | Type    | Options           |
 | ------- | ----------------- |
 | boolean | `true` or `false` |
 
+Terraforming, building and removing constructions in player bases (also includes adding and removing water)
+
 ```json
-"userGroups": [
-    ...,
-    "canEditBase": false, // <-- this
-    ...
-]
+"canEditBase": false
 ```
 
 ### Can Extend Base
 
-*add*, *remove*, and *upgrade* Flame Altars
-
 | Type    | Options           |
 | ------- | ----------------- |
 | boolean | `true` or `false` |
 
+*add*, *remove*, and *upgrade* Flame Altars
+
 ```json
-"userGroups": [
-    ...,
-    "canExtendBase": false // <-- this
-    ...
-]
+"canExtendBase": false
 ```
 
 ### Can Kick / Ban
@@ -127,100 +101,170 @@ Terraforming, building and removing constructions in player bases (also includes
 > [!warning]
 > `canKickBan` is only recommended for trusted admin groups
 
-Kick / ban other players from the server
-
 | Type    | Options           |
 | ------- | ----------------- |
 | boolean | `true` or `false` |
 
+Kick / ban other players from the server
+
 ```json
-"userGroups": [
-    ...,
-    "canKickBan": false // <-- this
-    ...,
-]
+"canKickBan": false
 ```
 
-## User Groups
+## Creating User Groups
 
-In addition to these groups, [custom groups](#custom-permission-groups) can be added to the `userGroups` list in `server_settings.json`.
+```json
+{
+    "name": "Group Name",
+    "password": "GroupPass",
+    "reservedSlots": 0,
+    "canEditWorld": false,
+    "canAccessInventories": false,
+    "canEditBase": false,
+    "canExtendBase": false,
+    "canKickBan": false
+}
+```
 
-> [!NOTE]
-> When a fresh enshrouded_server.json is created in the current version, randomized passwords are set to prevent unwanted players from joining the server.
-
-### Preset groups
-
-Enshrouded's dedicated server comes with 4 player permission groups preconfigured.
-They can be modified or completely removed and replaced with groups more suitable to the condition.
-
-The default groups and their permissions include:
-
-| `name`      | `password` | `reservedSlots` | `canEditWorld` | `canAccessInventories` | `canEditBase` | `canExtendBase` | `canKickBan` |
-| ----------- | ---------- | --------------- | -------------- | ---------------------- | ------------- | --------------- | ------------ |
-| **Admin**   | Auto       | `true`          | `true`         | `true`                 | `true`        | `true`          | `true`       |
-| **Friend**  | Auto       | `true`          | `true`         | `true`                 | `false`       | `false`         | `false`      |
-| **Guest**   | Auto       | `true`          | `false`        | `false`                | `false`       | `false`         | `false`      |
-| **Visitor** | Auto       | `false`         | `false`        | `false`                | `false`       | `false`         | `false`      |
-
-> [!NOTE]
-> By default, all of the preset groups except `"Visitor"` have **full access** to interact with the game world **oudide of a Flame Alter's perimeter** including the ability to: *engage in combat*; *collect materials*; *dig for resources*; *solve quests*; etc
-
-### Custom groups 
-
-The Enshrouded server settings also allow custom user groups to define each option individually.
-
-To add a cust permission group, use a unique name and passoword in a new group block (`{...}`) under `userGroups`.
+Use unique names and passwords for every user group.
+The password is what determines which group membership is assigned to a player when they join the server.
+The name is what they see in the join menu.
 
 > [!TIP]
 > Always limit untrusted *visitor* groups to `canEditWorld` to proctect againts grieving attempts.
 
-#### Custom group template
+
+### Preset User Groups
+
+When `enshrouded.exe` is launched without `enshrouded_server.json`, 4 user groups are created *with ranzomized passwords*.
+These user groups can be modified or completely removed and replaced with groups more suitable to the server's intent.
+
+#### Admin
 
 ```json
 {
-    ... // other settings
-    "userGroups": [
-        {  // other group(s)
-            ...
-        },  // end of other group(s) <-- add comma to the last group
-        { // start of custom group
-            "name": "name",
-            "password": "password",
-            "reservedSlots": 0,
-            "canEditWorld": false,
-            "canAccessInventories": false,
-            "canEditBase": false,
-            "canExtendBase": false
-        } // end of custom group
-    ], // end of userGroups
-    ... // other settings
+    "name": "Admin",
+    "password": "auto",
+    "reservedSlots": 0,
+    "canEditWorld": true,
+    "canAccessInventories": true,
+    "canEditBase": true,
+    "canExtendBase": true,
+    "canKickBan": true
 }
 ```
 
+> [!TIP]
+> Reserve at least 1 slot for an admin-style group but play on your server with a regular group membership.
+>
+> This will help pinpoint administrative actions in Enshrouded's logs.
+
+The preconfigured Admin group has unlimited permission. It should have a long, **strong** password to prevent unintended access.
+
+
+| `reservedSlots` | `canEditWorld` | `canAccessInventories` | `canEditBase` | `canExtendBase` | `canKickBan` |
+| --------------- | -------------- | ---------------------- | ------------- | --------------- | ------------ |
+| 0               | `true`         | `true`                 | `true`        | `true`          | `true`       |
+
+#### Friend
+
+```json
+{
+    "name": "Friend",
+    "password": "auto",
+    "reservedSlots": 0,
+    "canEditWorld": true,
+    "canAccessInventories": true,
+    "canEditBase": false,
+    "canExtendBase": false,
+    "canKickBan": false
+}
+```
+
+The Friend user group has access to interact with the world outside of player bases and access inventories.
+Friend members cannot edit the base, modify Flame Altars, or kick/ban other players.
+
+| `reservedSlots` | `canEditWorld` | `canAccessInventories` | `canEditBase` | `canExtendBase` | `canKickBan` |
+| --------------- | -------------- | ---------------------- | ------------- | --------------- | ------------ |
+| 0               | `true`         | `true`                 | `false`       | `false`         | `false`      |
+
+#### Guest
+
+```json
+{
+    "name": "Guest",
+    "password": "auto",
+    "canEditWorld": true,
+    "canAccessInventories": false,
+    "canEditBase": false,
+    "canExtendBase": false,
+    "canKickBan": false
+}
+```
+
+The Guest user group limits members to interacting with the world outside of player bases.
+They cannot access inventory, edit bases, modify Flame Altars, or kick/ban other players.
+
+| `reservedSlots` | `canEditWorld` | `canAccessInventories` | `canEditBase` | `canExtendBase` | `canKickBan` |
+| --------------- | -------------- | ---------------------- | ------------- | --------------- | ------------ |
+| 0               | `false`        | `false`                | `false`       | `false`         | `false`      |
+
+#### Visitor
+
+```json
+{
+    "name": "Visitor",
+    "password": "auto",
+    "canEditWorld": false,
+    "canAccessInventories": false,
+    "canEditBase": false,
+    "canExtendBase": false,
+    "canKickBan": false
+}
+```
+
+The Visitor group is the most restrictive preset user group providing view-only style access.
+
+Members of this group cannot interact with anything.
+They are like a ghost that can take damage.
+
+| `reservedSlots` | `canEditWorld` | `canAccessInventories` | `canEditBase` | `canExtendBase` | `canKickBan` |
+| --------------- | -------------- | ---------------------- | ------------- | --------------- | ------------ |
+| 0               | `false`        | `false`                | `false`       | `false`         | `false`      |
+
 ## User Group Example
 
-A Guild group that shares inventory and crafting items but cannot redecorate the base(s):
+In addition to reserving 1 extra slot and updating the passord for the default `Admin` group, all other groups have been removed and a new `Guild` group has been added.
+
+The `Guild` group shares inventory and crafting items but cannot redecorate or modify the base(s). We've also ensured they cannot kick or ban each other when situations get heated.
 
 | `name`    | `password`       | `reservedSlots` | `canEditWorld` | `canAccessInventories` | `canEditBase` | `canExtendBase` | `canKickBan` |
 | --------- | ---------------- | --------------- | -------------- | ---------------------- | ------------- | --------------- | ------------ |
 | **Guild** | @dventure_Aw4!ts | 4               | `true`         | `true`                 | `false`       | `false`         | `false`      |
 
 ```json
-{
-    ...,
-    "userGroups": [
-        ..., // <-- Preset groups (keep or delete)
-        {  // <-- Guild group start
-            "name": "Guild",
-            "password": "@dventure_Aw4!ts",
-            "reservedSlots": 4,
-            "canEditWorld": true,
-            "canAccessInventories": true,
-            "canEditBase": false,
-            "canExtendBase": false,
-            "canKickBan": false
-        }  // <-- Guild group end
-    ],
-    ...
-}
+"userGroups": [
+    // Admin group (modified)
+    {
+        "name": "Admin",
+        "password": "@dm!nR'Us",
+        "reservedSlots": 1,
+        "canEditWorld": true,
+        "canAccessInventories": true,
+        "canEditBase": true,
+        "canExtendBase": true,
+        "canKickBan": true
+    },
+    // Guild group
+    {
+        "name": "Guild",
+        "password": "@dventure_Aw4!ts",
+        "reservedSlots": 4,
+        "canEditWorld": true,
+        "canAccessInventories": true,
+        "canEditBase": false,
+        "canExtendBase": false,
+        "canKickBan": false
+    }
+]
 ```
