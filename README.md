@@ -14,8 +14,12 @@ vs which need to be left alone.
 
 ## Contents
 
+- [Contents](#contents)
 - [Settings Configuration](#settings-configuration)
-- [Default Settings JSON](#default-server-settings)
+	- [Server Settings](#server-settings)
+	- [User Groups](#user-groups)
+	- [Custom Difficulty and Gameplay Settings](#custom-difficulty-and-gameplay-settings)
+- [Default Server Settings](#default-server-settings)
 
 ---
 
@@ -23,18 +27,19 @@ vs which need to be left alone.
 
 ### [Server Settings](./server_settings.md)
 
-Display name, networking, and access settings.
+Display name, networking, and communication settings.
 
-### [Permission Settings](./permission_settings.md)
+### [User Groups](./user_groups/README.md)
 
-Role Based Access Control (RBAC) for limiting player permissions based on the provided password.
+[Reference Table](./user_groups/settings_table.md)
 
-### [Custom Difficulty and Gameplay Settings](./difficulty_and_gameplay_settings.md)
+Role Based Access Control (RBAC) for limiting player ability.
 
-[Reference table](./gameplay_settings/settings_table.md)
+### [Custom Difficulty and Gameplay Settings](./gameplay/README.md)
+
+[Reference table](./gameplay/settings_table.md)
 
 When using the `"Custom"` gameplay preset, these settings are unlocked and customizable.
-
 
 ## [Default Server Settings](./enshrouded_server.json)
 

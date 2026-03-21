@@ -11,21 +11,13 @@ Be a decent person, **don't use offensive language**.
 
 ## Contents
 
-- [SERVER SETTINGS](#server-settings)
-  - [Contents](#contents)
-  - [Settings Table](#settings-table)
-  - [Additional Information](#additional-information)
-    - [`tags` Details](#tags-details)
-      - [Allowed Tags](#allowed-tags)
-      - [tags Examples](#tags-examples)
-        - [All tags on one line](#all-tags-on-one-line)
-        - [One tag per line](#one-tag-per-line)
-    - [`gameSettingsPreset` Details](#gamesettingspreset-details)
-      - [`gameSettingsPreset` Options](#gamesettingspreset-options)
-      - [`gameSettingsPreset` example](#gamesettingspreset-example)
-    - [`bannedAccounts` Details](#bannedaccounts-details)
-      - [`bannedAccounts` Example](#bannedaccounts-example)
-  - [Settings Example](#settings-example)
+- [Contents](#contents)
+- [Settings Table](#settings-table)
+- [Additional Information](#additional-information)
+  - [`tags` Details](#tags-details)
+  - [`gameSettingsPreset` Details](#gamesettingspreset-details)
+  - [`bannedAccounts` Details](#bannedaccounts-details)
+- [Settings Example](#settings-example)
 ---
 
 ## Settings Table
@@ -126,7 +118,7 @@ Tags help other players find a fitting server to join by using currated options 
 | `"Relaxed"`    | Base-building and light-hearted adventuring | more loot, less enemies                             |
 | `"Hard"`       | Tougher combat experience                   | more enemies, higher enemy aggression               |
 | `"Survival"`   | Those who seek some punishment              | Hard \+ survival mechanics                          |
-| **`"Custom"`** | **Fully custom gameplay and difficulty**    | **see [Gameplay Settings](./gameplay_settings.md)** |
+| **`"Custom"`** | **Fully custom gameplay and difficulty**    | **see [Gameplay Settings](./gameplay/README.md)** |
 
 #### `gameSettingsPreset` example
 

@@ -2,6 +2,19 @@
 
 [Enshrouded Server](../README.md) > [Gameplay Settings](./README.md) > Gameplay Settings Table
 
+
+
+## Game Settings Preset Options
+
+| Value          | Use-Case                                    | Description                                       |
+| -------------- | ------------------------------------------- | ------------------------------------------------- |
+| `"Default"`    | First-time players                          | Enshrouded default                                |
+| `"Relaxed"`    | Base-building and light-hearted adventuring | more loot, less enemies                           |
+| `"Hard"`       | Tougher combat experience                   | more enemies, higher enemy aggression             |
+| `"Survival"`   | Those who seek some punishment              | Hard \+ survival mechanics                        |
+| **`"Custom"`** | **Fully custom gameplay and difficulty**    | **see [Gameplay Settings](./README.md)** |
+
+
 ## Gameplay Settings
 
 

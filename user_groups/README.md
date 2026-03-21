@@ -1,45 +1,147 @@
 
-# PERMISSION SETTINGS
+# User Groups
 
-[Enshrouded Server](./README.md) > Permission Settings
-
-Enshrouded allows hosts to define permissions for groups of players. 
-This document leads through the options and also highlights areas that hosts need to be aware of.
-
----
-
-## Contents
-
-- [PERMISSION SETTINGS](#permission-settings)
-  - [Contents](#contents)
-  - [Group options](#group-options)
-  - [Player permission groups](#player-permission-groups)
-    - [Preset groups](#preset-groups)
-    - [Custom groups](#custom-groups)
-      - [Custom group template](#custom-group-template)
-  - [Player Permission Groups Example](#player-permission-groups-example)
----
-
-## Group options
-
-| Name                   | Description                                                                                                 | Type    | Options                 |
-| ---------------------- | ----------------------------------------------------------------------------------------------------------- | ------- | ----------------------- |
-| `canKickBan`           | kick / ban other players from the server                                                                    | boolean | `true` or `false`       |
-| `canAccessInventories` | storage chests, factories, collections and other containers with potentially valuable items                 | boolean | `true` or `false`       |
-| `canEditWorld`         | terraform or destroy areas in the open world                                                                | boolean | `true` or `false`       |
-| `canEditBase`          | terraforming, building and removing constructions in player bases (also includes adding and removing water) | boolean | `true` or `false`       |
-| `canExtendBase`        | *add*, *remove*, and *upgrade* Flame Altars                                                                 | boolean | `true` or `false`       |
-| `reservedSlots`        | limits a portion of the server's `slotCount` to login as this group only                                    | number  | 1 - `slotCount` setting |
-
-> [!warning]
-> `canKickBan` is only recommended for trusted admin groups
->
->`canAccessInventories` refers to **objects in player bases**, it does *not* prevent access to treasure chests in the open world.
-
-## Player permission groups
+[Enshrouded Server](./README.md) > User Groups
 
 Player permissions for playing on dedicated servers are handled via user groups.
 Each group can be set up in the `enshrouded_server.json` settings file with a unique configuration of permissions and access granted to the logged-in player. 
+
+
+---
+
+- [Group Options](#group-options)
+  - [Reserved Slots](#reserved-slots)
+  - [Can Edit World](#can-edit-world)
+  - [Can Access Inventories](#can-access-inventories)
+  - [Can Edit Base](#can-edit-base)
+  - [Can Extend Base](#can-extend-base)
+  - [Can Kick / Ban](#can-kick--ban)
+- [User Groups](#user-groups-1)
+  - [Preset groups](#preset-groups)
+  - [Custom groups](#custom-groups)
+- [User Group Example](#user-group-example)
+---
+
+## Group Options
+
+```json
+...,
+"userGroups" = [ // <-- start
+    ...,  // <-- individual groups here
+] // <-- end
+...,
+```
+
+There are 6 settings configured for user groups.
+
+> [!NOTE]
+> These settings are ordered according to my personal workflow,
+> not the default order they appear in `enshrouded_settings.json`.
+
+### Reserved Slots
+
+Limits a portion of the server's `slotCount` to login as this group only
+
+| Type   | Options                 |
+| ------ | ----------------------- |
+| number | 1 - `slotCount` setting |
+
+```json
+"userGroups": [
+    ...,
+    "reservedSlots": 0, // <-- this
+    ...,
+]
+```
+
+### Can Edit World
+
+Terraform or destroy areas in the open world
+
+| Type    | Options           |
+| ------- | ----------------- |
+| boolean | `true` or `false` |
+
+```json
+"userGroups": [
+    ...,
+    "canEditWorld": false, // <-- this
+    ...,
+]
+```
+
+### Can Access Inventories
+
+> [!warning]
+>`canAccessInventories` refers to **objects in player bases**, it does *not* prevent access to treasure chests in the open world.
+
+Storage chests, factories, collections and other containers with potentially valuable items
+
+| Type    | Options           |
+| ------- | ----------------- |
+| boolean | `true` or `false` |
+
+
+```json
+"userGroups": [
+    ...,
+    "canAccessInventories": false, // <-- this
+    ...,
+]
+```
+
+### Can Edit Base
+
+Terraforming, building and removing constructions in player bases (also includes adding and removing water)
+
+| Type    | Options           |
+| ------- | ----------------- |
+| boolean | `true` or `false` |
+
+```json
+"userGroups": [
+    ...,
+    "canEditBase": false, // <-- this
+    ...
+]
+```
+
+### Can Extend Base
+
+*add*, *remove*, and *upgrade* Flame Altars
+
+| Type    | Options           |
+| ------- | ----------------- |
+| boolean | `true` or `false` |
+
+```json
+"userGroups": [
+    ...,
+    "canExtendBase": false // <-- this
+    ...
+]
+```
+
+### Can Kick / Ban
+
+> [!warning]
+> `canKickBan` is only recommended for trusted admin groups
+
+Kick / ban other players from the server
+
+| Type    | Options           |
+| ------- | ----------------- |
+| boolean | `true` or `false` |
+
+```json
+"userGroups": [
+    ...,
+    "canKickBan": false // <-- this
+    ...,
+]
+```
+
+## User Groups
 
 In addition to these groups, [custom groups](#custom-permission-groups) can be added to the `userGroups` list in `server_settings.json`.
 
@@ -95,7 +197,7 @@ To add a cust permission group, use a unique name and passoword in a new group b
 }
 ```
 
-## Player Permission Groups Example
+## User Group Example
 
 A Guild group that shares inventory and crafting items but cannot redecorate the base(s):
 
