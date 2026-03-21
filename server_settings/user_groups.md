@@ -174,18 +174,21 @@ The preconfigured Admin group has unlimited permission. It should have a long, *
     "reservedSlots": 0,
     "canEditWorld": true,
     "canAccessInventories": true,
-    "canEditBase": false,
+    "canEditBase": true,
     "canExtendBase": false,
     "canKickBan": false
 }
 ```
 
-The Friend user group has access to interact with the world outside of player bases and access inventories.
-Friend members cannot edit the base, modify Flame Altars, or kick/ban other players.
+The Friend user group has access to
+interact with the world outside of player bases,
+access inventories,
+and edit player bases.
+Friend members cannot modify Flame Altars or kick/ban other players.
 
 | reservedSlots | canEditWorld | canAccessInventories | canEditBase | canExtendBase | canKickBan |
 | ------------- | ------------ | -------------------- | ----------- | ------------- | ---------- |
-| `0`             |  `true`         |  `true`                 |  `false`       | `false`       |  `false`      |
+| `0`             |  `true`         |  `true`                 |  `true`       | `false`       |  `false`      |
 
 #### Guest
 
