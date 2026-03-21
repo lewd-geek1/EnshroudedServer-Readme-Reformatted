@@ -20,9 +20,8 @@ Each group can be set up in the `enshrouded_server.json` settings file with a un
   - [Can Edit Base](#can-edit-base)
   - [Can Extend Base](#can-extend-base)
   - [Can Kick / Ban](#can-kick--ban)
-- [User Groups](#user-groups-1)
-  - [Preset groups](#preset-groups)
-  - [Custom groups](#custom-groups)
+- [Creating User Groups](#creating-user-groups)
+  - [Preset User Groups](#preset-user-groups)
 - [User Group Example](#user-group-example)
 ---
 
@@ -41,9 +40,9 @@ There are 6 settings configured for user groups.
 
 Limits a portion of the server's `slotCount` to login as this group only
 
-| Type   | Options                 |
-| ------ | ----------------------- |
-| number | 1 - `slotCount` setting |
+| Type   | Options           |
+| ------ | ----------------- |
+| number | `1` - `slotCount` |
 
 ### Can Edit World
 
@@ -162,9 +161,9 @@ These user groups can be modified or completely removed and replaced with groups
 The preconfigured Admin group has unlimited permission. It should have a long, **strong** password to prevent unintended access.
 
 
-| `reservedSlots` | `canEditWorld` | `canAccessInventories` | `canEditBase` | `canExtendBase` | `canKickBan` |
-| --------------- | -------------- | ---------------------- | ------------- | --------------- | ------------ |
-| 0               | `true`         | `true`                 | `true`        | `true`          | `true`       |
+| reservedSlots | canEditWorld | canAccessInventories | canEditBase | canExtendBase | canKickBan |
+| ------------- | ------------ | -------------------- | ----------- | ------------- | ---------- |
+| `0`             |  `true`         |  `true`                 |  `true`        |  `true`          |  `true`       |
 
 #### Friend
 
@@ -184,9 +183,9 @@ The preconfigured Admin group has unlimited permission. It should have a long, *
 The Friend user group has access to interact with the world outside of player bases and access inventories.
 Friend members cannot edit the base, modify Flame Altars, or kick/ban other players.
 
-| `reservedSlots` | `canEditWorld` | `canAccessInventories` | `canEditBase` | `canExtendBase` | `canKickBan` |
-| --------------- | -------------- | ---------------------- | ------------- | --------------- | ------------ |
-| 0               | `true`         | `true`                 | `false`       | `false`         | `false`      |
+| reservedSlots | canEditWorld | canAccessInventories | canEditBase | canExtendBase | canKickBan |
+| ------------- | ------------ | -------------------- | ----------- | ------------- | ---------- |
+| `0`             |  `true`         |  `true`                 |  `false`       | `false`       |  `false`      |
 
 #### Guest
 
@@ -205,9 +204,9 @@ Friend members cannot edit the base, modify Flame Altars, or kick/ban other play
 The Guest user group limits members to interacting with the world outside of player bases.
 They cannot access inventory, edit bases, modify Flame Altars, or kick/ban other players.
 
-| `reservedSlots` | `canEditWorld` | `canAccessInventories` | `canEditBase` | `canExtendBase` | `canKickBan` |
-| --------------- | -------------- | ---------------------- | ------------- | --------------- | ------------ |
-| 0               | `false`        | `false`                | `false`       | `false`         | `false`      |
+| reservedSlots | canEditWorld | canAccessInventories | canEditBase | canExtendBase | canKickBan |
+| ------------- | ------------ | -------------------- | ----------- | ------------- | ---------- |
+| `0`             |  `false`        |  `false`                |  `false`       |  `false`         |  `false`      |
 
 #### Visitor
 
@@ -228,19 +227,11 @@ The Visitor group is the most restrictive preset user group providing view-only 
 Members of this group cannot interact with anything.
 They are like a ghost that can take damage.
 
-| `reservedSlots` | `canEditWorld` | `canAccessInventories` | `canEditBase` | `canExtendBase` | `canKickBan` |
-| --------------- | -------------- | ---------------------- | ------------- | --------------- | ------------ |
-| 0               | `false`        | `false`                | `false`       | `false`         | `false`      |
+| reservedSlots | canEditWorld | canAccessInventories | canEditBase | canExtendBase | canKickBan |
+| ------------- | ------------ | -------------------- | ----------- | ------------- | ---------- |
+| `0`             |  `false`        |  `false`                |  `false`       |  `false`         |  `false`      |
 
 ## User Group Example
-
-In addition to reserving 1 extra slot and updating the passord for the default `Admin` group, all other groups have been removed and a new `Guild` group has been added.
-
-The `Guild` group shares inventory and crafting items but cannot redecorate or modify the base(s). We've also ensured they cannot kick or ban each other when situations get heated.
-
-| `name`    | `password`       | `reservedSlots` | `canEditWorld` | `canAccessInventories` | `canEditBase` | `canExtendBase` | `canKickBan` |
-| --------- | ---------------- | --------------- | -------------- | ---------------------- | ------------- | --------------- | ------------ |
-| **Guild** | @dventure_Aw4!ts | 4               | `true`         | `true`                 | `false`       | `false`         | `false`      |
 
 ```json
 "userGroups": [
@@ -268,3 +259,15 @@ The `Guild` group shares inventory and crafting items but cannot redecorate or m
     }
 ]
 ```
+
+In addition to reserving 1 extra slot and updating the passord for the default `Admin` group, all other groups have been removed and a new `Guild` group has been added.
+
+The `Guild` group is reserved for a minimum of 4 players,
+shares inventory and crafting items,
+and cannot redecorate or modify bases.
+We've also ensured they cannot kick or ban each other when situations get heated.
+
+| name      | password             | reservedSlots | canEditWorld | canAccessInventories | canEditBase | canExtendBase | canKickBan |
+| --------- | -------------------- | ------------- | ------------ | -------------------- | ----------- | ------------- | ---------- |
+| `"Admin"` | `"@dm!nR'Us"`        | `1`           | `true`       | `true`               | `true`      | `true`        | `true`     |
+| `"Guild"` | `"@dventure_Aw4!ts"` | `4`           | `true`       | `true`               | `false`     | `false`       | `false`    |
