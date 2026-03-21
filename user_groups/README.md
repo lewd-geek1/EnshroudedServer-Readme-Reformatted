@@ -25,11 +25,13 @@ Each group can be set up in the `enshrouded_server.json` settings file with a un
 ## Group Options
 
 ```json
-...,
-"userGroups" = [ // <-- start
-    ...,  // <-- individual groups here
-] // <-- end
-...,
+{
+    ...,
+    "userGroups" = [ // <-- start
+        ...,  // <-- individual groups here
+    ] // <-- end
+    ...,
+}
 ```
 
 There are 6 settings configured for user groups.
