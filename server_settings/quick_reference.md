@@ -1,22 +1,65 @@
-# Gameplay Settings Table
+# Reference Tables
 
-[Enshrouded Server](../README.md) > [Gameplay Settings](./README.md) > Gameplay Settings Table
+Quick-reference tables of settings.
 
+- [Server Settings](#server-settings)
+- [Allowed Tags](#allowed-tags)
+- [Game Settings Preset Options](#game-settings-preset-options)
+- [Gameplay Settings](#gameplay-settings)
+- [User Group Settings](#user-group-settings)
 
+## Server Settings
+
+| Setting              | Type         | Default                                                                     | Options                                                       | Example                                            |
+| -------------------- | ------------ | --------------------------------------------------------------------------- | ------------------------------------------------------------- | -------------------------------------------------- |
+| `name`               | text         | `"Enshrouded Server"`                                                       | any text                                                      | `"Lewd Geeks Gaming"`                              |
+| `saveDirectory`      | path         | `"./savegame"`                                                              | The full path to any folder                                   | `"C:/Enshrouded/GameData"` `                       |
+| `logDirectory`       | path         | `"./logs"`                                                                  | The full path to any folder                                   | `"C:/Enshrouded/GameData/Logs"` `                  |
+| `ip`                 | text         | `"0.0.0.0"`                                                                 | Any IP address (typically the address assigned to the device) | `"192.168.1.224"`                                  |
+| `queryPort`          | number       | Any available port (best practice use an unregistered port `49152`-`65535`) | `15637`                                                       | `56481`                                            |
+| `slotCount`          | number       | `1` - `16`                                                                  | `16`                                                          | `4`                                                |
+| `tags`               | list of text | `"[]"` (empty)                                                              | See [Allowed Tags](#allowed-tags)                             | `["LookingForPlayers", "English", "BaseBuilding"]` |
+| `voiceChatMode`      | text         | `"Proximity"`                                                               | `"Proximity"` or `"Global"`                                   | `"Global"`                                         |
+| `enableVoiceChat`    | boolean      | `false`                                                                     | `true` or `false`                                             | `true`                                             |
+| `enableTextChat`     | boolean      | `false`                                                                     | `true` or `false`                                             | `true`                                             |
+| `gameSettingsPreset` | text         | `"Default"`                                                                 | see [gameSettingsPreset Options](#gamesettingspreset-options) | `"Custom"`                                         |
+
+## Allowed Tags
+
+| Name                  | Category    |
+| --------------------- | ----------- |
+| `"LookingForPlayers"` | Looking For |
+| `"BaseBuilding"`      | Gameplay    |
+| `"Exploration"`       | Gameplay    |
+| `"Roleplay"`          | Gameplay    |
+| `"Chinese"`           | Language    |
+| `"Italian"`           | Language    |
+| `"Portuguese"`        | Language    |
+| `"Thai"`              | Language    |
+| `"English"`           | Language    |
+| `"Japanese"`          | Language    |
+| `"Russian"`           | Language    |
+| `"French"`            | Language    |
+| `"Korean"`            | Language    |
+| `"Spanish"`           | Language    |
+| `"Turkish"`           | Language    |
+| `"German"`            | Language    |
+| `"Polish"`            | Language    |
+| `"Taiwanese"`         | Language    |
+| `"Ukrainian"`         | Language    |
 
 ## Game Settings Preset Options
 
-| Value          | Use-Case                                    | Description                                       |
-| -------------- | ------------------------------------------- | ------------------------------------------------- |
-| `"Default"`    | First-time players                          | Enshrouded default                                |
-| `"Relaxed"`    | Base-building and light-hearted adventuring | more loot, less enemies                           |
-| `"Hard"`       | Tougher combat experience                   | more enemies, higher enemy aggression             |
-| `"Survival"`   | Those who seek some punishment              | Hard \+ survival mechanics                        |
+| Value          | Use-Case                                    | Description                              |
+| -------------- | ------------------------------------------- | ---------------------------------------- |
 | **`"Custom"`** | **Fully custom gameplay and difficulty**    | **see [Gameplay Settings](./README.md)** |
+| `"Default"`    | First-time players                          | Enshrouded default                       |
+| `"Relaxed"`    | Base-building and light-hearted adventuring | more loot, less enemies                  |
+| `"Hard"`       | Tougher combat experience                   | more enemies, higher enemy aggression    |
+| `"Survival"`   | Those who seek some punishment              | Hard \+ survival mechanics               |
 
 
 ## Gameplay Settings
-
 
 | Value                                 | Type           | Default                  | Options                                                        |
 | ------------------------------------- | -------------- | ------------------------ | -------------------------------------------------------------- |
@@ -57,3 +100,14 @@
 | `"dayTimeDuration"`                   | number         | `1800000000000`          | `120000000000` - `3600000000000`                               |
 | `"nightTimeDuration"`                 | number         | `720000000000`           | `120000000000` - `3600000000000`                               |
 | `"curseModifier"`                     | text           | `"Normal"`               | `"Easy"`, `"Normal"`, `"Hard"`,                                |
+
+## User Group Settings
+
+| Name                   | Type    | Options           |
+| ---------------------- | ------- | ----------------- |
+| `canKickBan`           | boolean | `true` or `false` |
+| `canAccessInventories` | boolean | `true` or `false` |
+| `canEditWorld`         | boolean | `true` or `false` |
+| `canEditBase`          | boolean | `true` or `false` |
+| `canExtendBase`        | boolean | `true` or `false` |
+| `reservedSlots`        | number  | 1 - `slotCount`   |

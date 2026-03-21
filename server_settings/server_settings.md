@@ -19,9 +19,7 @@ Be a decent person, **don't use offensive language**.
 - [`voiceChatMode`](#voicechatmode)
 - [`enableVoiceChat`](#enablevoicechat)
 - [`enableTextChat`](#enabletextchat)
-- [`gameSettingsPreset`](#gamesettingspreset)
-  - [`gameSettingsPreset` Options](#gamesettingspreset-options)
-- [`userGroups`](#usergroups)
+- [Settings Example](#settings-example)
 
 ---
 
@@ -37,8 +35,8 @@ Be a decent person, **don't use offensive language**.
 
 A custom name displayed on the server join menu and in-game
 
-| Type | Default |
-| --- | --- |
+| Type | Default               |
+| ---- | --------------------- |
 | text | `"Enshrouded Server"` |
 
 
@@ -50,8 +48,8 @@ A custom name displayed on the server join menu and in-game
 
 The full path to where Enshrouded should store save files
 
-| Type | Default |
-| --- | --- |
+| Type | Default        |
+| ---- | -------------- |
 | path | `"./savegame"` |
 
 ## `logDirectory`
@@ -62,8 +60,8 @@ The full path to where Enshrouded should store save files
 
 The full path to where Enshrouded should store log files
 
-| Type | Default |
-| --- | --- |
+| Type | Default    |
+| ---- | ---------- |
 | path | `"./logs"` |
 
 
@@ -75,8 +73,8 @@ The full path to where Enshrouded should store log files
 
 The IP address allowed t0o interact with the Enshrouded server
 
-| Type | Default |
-| --- | --- |
+| Type | Default     |
+| ---- | ----------- |
 | text | `"0.0.0.0"` |
 
 
@@ -88,8 +86,8 @@ The IP address allowed t0o interact with the Enshrouded server
 
 The device communications port for the Enshrouded server
 
-| Type | Default |
-| --- | --- |
+| Type   | Default |
+| ------ | ------- |
 | number | `15637` |
 
 
@@ -104,15 +102,14 @@ The device communications port for the Enshrouded server
 
 Controls the maximum number of players allowed on the server *at the same time*.
 
-| Type | Default |
-| --- | --- |
-| number | `16` |
+| Type   | Default |
+| ------ | ------- |
+| number | `16`    |
 
 ## `tags`
 
 ```json
 "tags": [
-
 ],
 ```
 
@@ -122,8 +119,8 @@ Tags help other players find a fitting server to join by using currated options 
 - what languages are spoken on the server and 
 - if there is a main gameplay focus
 
-| Type | Default |
-| --- | --- |
+| Type         | Default        |
+| ------------ | -------------- |
 | list of text | `"[]"` (empty) |
 
 ### Allowed Tags
@@ -172,7 +169,6 @@ A tag must be one of the following in order to be visible by players.
 }
 ```
 
-
 ## `voiceChatMode`
 
 ```json
@@ -182,8 +178,8 @@ A tag must be one of the following in order to be visible by players.
 If voice chat should be heard by everyone or just nearby players.
 Choices are `"Proximity"` or `"Global"`.
 
-| Type | Description |
-| --- | --- |
+| Type | Description   |
+| ---- | ------------- |
 | text | `"Proximity"` |
 
 ## `enableVoiceChat`
@@ -194,9 +190,9 @@ Choices are `"Proximity"` or `"Global"`.
 
 Allow or deny voice chat on the server. Choices are `true` or `false`.
 
-| Type | Description |
-| --- | --- |
-| boolean | `false` |
+| Type    | Description |
+| ------- | ----------- |
+| boolean | `false`     |
 
 
 ## `enableTextChat`
@@ -207,66 +203,28 @@ Allow or deny voice chat on the server. Choices are `true` or `false`.
 
 Allow or deny text chat on the server. Choices are `true` or `false`.
 
-| Type | Description |
-| --- | --- |
-| boolean | `false` |
+| Type    | Description |
+| ------- | ----------- |
+| boolean | `false`     |
 
 
-## `gameSettingsPreset`
-
-> [!important]
-> To customize gameplay, this settings should be set to `"Custom"`
+## Settings Example
 
 ```json
-"gameSettingsPreset": "Default",
+{
+	"name": "Lewd Geeks Gaming",
+	"saveDirectory": "C:/Enshrouded/GameData",
+	"logDirectory": "C:/Enshrouded/GameData/History",
+	"ip": "192.168.1.224",
+	"queryPort": 32413,
+	"slotCount": 4,
+	"tags": ["LookingForPlayers", "English", "BaseBuilding"],
+	"voiceChatMode": "Global",
+	"enableVoiceChat": false,
+	"enableTextChat": true,
+	"gameSettingsPreset": "Custom",
+  "gameSettings": {}, // See Gameplay Settings
+  "userGroups": [], // See User Groups
+  "bannedAccounts": [] // See Banned Accounts
+}
 ```
-
-A named difficulty and gameplay option.
-
-| Type | Default |
-| --- | --- |
-| text | `"Default"` |
-
-
-### `gameSettingsPreset` Options
-
-#### `"Default"`
-
-```json
-"gameSettingsPreset": "Default",
-```
-
-**Use case**: First-time players
-**Details**: Enshrouded default                                  |
-
-#### `"Relaxed"`
-
-**Use case**: Base-building and light-hearted adventuring
-**Details**: more loot, less enemies
-
-#### `"Hard"`
-
-**Use case**: Tougher combat experience
-**Details**: more enemies, higher enemy aggression
-
-#### `"Survival"`
-
-**Use case**: Those who seek some punishment
-**Details**: Hard \+ survival mechanics
-
-#### **`"Custom"`**
-
-**Use case**: **Fully custom gameplay and difficulty**
-**Details**: **see [Gameplay Settings](./gameplay/README.md)**
-
-
-## `userGroups`
-
-```json
-"userGroups": [
-
-]
-```
-
-Provide predefined and custom logon groups with individually selected player permissions.
-See the [User Groups](./user_groups/README.md) README for more information.
