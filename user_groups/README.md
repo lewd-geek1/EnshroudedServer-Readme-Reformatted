@@ -32,84 +32,84 @@ There are 6 settings configured for user groups.
 
 ### Reserved Slots
 
-| Type   | Options                 |
-| ------ | ----------------------- |
-| number | 1 - `slotCount` setting |
-
-Limits a portion of the server's `slotCount` to login as this group only
-
-> [!CAUTION]
-> Reserving 0 slots for an *admin* group could leave your server without the ability to kick/ban other players.
-
 ```json
 "reservedSlots": 0
 ```
 
+> [!CAUTION]
+> Reserving 0 slots for an *admin* group could leave your server without the ability to kick/ban other players.
+
+Limits a portion of the server's `slotCount` to login as this group only
+
+| Type   | Options                 |
+| ------ | ----------------------- |
+| number | 1 - `slotCount` setting |
+
 ### Can Edit World
-
-| Type    | Options           |
-| ------- | ----------------- |
-| boolean | `true` or `false` |
-
-Terraform or destroy areas in the open world
 
 ```json
 "canEditWorld": false
 ```
 
-### Can Access Inventories
-
-> [!warning]
->`canAccessInventories` refers to **objects in player bases**, it does *not* prevent access to treasure chests in the open world.
+Terraform or destroy areas in the open world
 
 | Type    | Options           |
 | ------- | ----------------- |
 | boolean | `true` or `false` |
 
-Storage chests, factories, collections and other containers with potentially valuable items
+### Can Access Inventories
 
 ```json
 "canAccessInventories": false
 ```
 
-### Can Edit Base
+> [!warning]
+>`canAccessInventories` refers to **objects in player bases**, it does *not* prevent access to treasure chests in the open world.
+
+Storage chests, factories, collections and other containers with potentially valuable items.
 
 | Type    | Options           |
 | ------- | ----------------- |
 | boolean | `true` or `false` |
 
-Terraforming, building and removing constructions in player bases (also includes adding and removing water)
+### Can Edit Base
 
 ```json
 "canEditBase": false
 ```
 
-### Can Extend Base
+Terraforming, building and removing constructions in player bases (also includes adding and removing water)
 
 | Type    | Options           |
 | ------- | ----------------- |
 | boolean | `true` or `false` |
 
-*add*, *remove*, and *upgrade* Flame Altars
+### Can Extend Base
 
 ```json
 "canExtendBase": false
 ```
 
-### Can Kick / Ban
-
-> [!warning]
-> `canKickBan` is only recommended for trusted admin groups
+*Add*, *remove*, and *upgrade* Flame Altars.
 
 | Type    | Options           |
 | ------- | ----------------- |
 | boolean | `true` or `false` |
 
-Kick / ban other players from the server
+### Can Kick / Ban
+
+> [!warning]
+> `canKickBan` is only recommended for trusted *admin* groups
 
 ```json
 "canKickBan": false
 ```
+
+Kick / ban other players from the server
+
+| Type    | Options           |
+| ------- | ----------------- |
+| boolean | `true` or `false` |
 
 ## Creating User Groups
 
