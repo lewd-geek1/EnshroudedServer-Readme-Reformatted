@@ -190,9 +190,9 @@ Choices are `"Proximity"` or `"Global"`.
 
 Allow or deny voice chat on the server. Choices are `true` or `false`.
 
-| Type    | Description |
-| ------- | ----------- |
-| boolean | `false`     |
+| Type    | Default |
+| ------- | ------- |
+| boolean | `false` |
 
 
 ## `enableTextChat`
@@ -203,9 +203,9 @@ Allow or deny voice chat on the server. Choices are `true` or `false`.
 
 Allow or deny text chat on the server. Choices are `true` or `false`.
 
-| Type    | Description |
-| ------- | ----------- |
-| boolean | `false`     |
+| Type    | Default |
+| ------- | ------- |
+| boolean | `false` |
 
 
 ## Settings Example
