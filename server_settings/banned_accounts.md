@@ -22,7 +22,7 @@
 ## `bannedAccounts` Example
 
 > [!WARNING]
-> This is my best guess - I have not seen a list of banned accounts.
+> This is my best guess - I have not banned any accounts
 
 ```json
 {

@@ -25,12 +25,7 @@ and more.
 
 ---
 
-## Game Settings Preset
-
-Before any customizing can be performed, a settings preset needs to be selected.
-**The selected preset overrides individually configured settings.**
-
-### `gameSettingsPreset`
+## `gameSettingsPreset`
 
 > [!WARNING]
 > Only when `"gameSettingsPreset"` is set to `"Custom"`, can individual gameplay settings can be adjusted.
@@ -41,24 +36,28 @@ Before any customizing can be performed, a settings preset needs to be selected.
 ```
 
 A named game setting option.
-Any settings preconfigured in the preset will overrule individually configured game settings.
+**The selected preset overrides individually configured settings.**
 
-| Type | Default     |
-| ---- | ----------- |
-| text | `"Default"` |
+| Type | Default     | Options                                                         |
+| ---- | ----------- | --------------------------------------------------------------- |
+| text | `"Default"` | `"Custom"`, `"Default"`, `"Relaxed"`, `"Hard"`, or `"Survival"` |
 
-#### `gameSettingsPreset` Options
+### `gameSettingsPreset` Options
 
-##### **`"Custom"`**
+#### **`"Custom"`**
 
 > [!TIP]
 > This is probably what you want.
 
-**Use case**: **Fully custom gameplay and difficulty**
+```json
+"gameSettingsPreset": "Custom",
+```
 
-**Details**: **see [Gameplay Settings](#gameplay-settings)**
+**Use case**: Fully custom gameplay and difficulty
 
-##### `"Default"`
+**Details**: covered in [Game Settings](#game-settings)
+
+#### `"Default"`
 
 ```json
 "gameSettingsPreset": "Default",
@@ -68,25 +67,42 @@ Any settings preconfigured in the preset will overrule individually configured g
 
 **Details**: Enshrouded default
 
-##### `"Relaxed"`
+#### `"Relaxed"`
+
+```json
+"gameSettingsPreset": "Relaxed",
+```
 
 **Use case**: Base-building and light-hearted adventuring
 
 **Details**: more loot, less enemies
 
-##### `"Hard"`
+#### `"Hard"`
+
+```json
+"gameSettingsPreset": "Hard",
+```
 
 **Use case**: Tougher combat experience
 
 **Details**: more enemies, higher enemy aggression
 
-##### `"Survival"`
+#### `"Survival"`
+
+```json
+"gameSettingsPreset": "Survival",
+```
 
 **Use case**: Those who seek some punishment
 
 **Details**: Hard \+ survival mechanics
 
-## Gameplay Settings
+## Game Settings
+
+```json
+"gameSettings": {
+}
+```
 
 When using `"Custom"` - and only when using `"Custom"` - the following settings are
 available for modification.
@@ -95,7 +111,7 @@ They control all aspects of gameplay mechanics and difficulty offered by Enshrou
 
 ### Player Settings
 
-#### Player Health
+#### `playerHealthFactor`
 
 ```json
     "playerHealthFactor": 1,
@@ -107,7 +123,7 @@ Scales the max health for players "by a factor".
 | -------------- | ------- | -------------- |
 | number (float) | `1`     | `0.25` - `4.0` |
 
-#### Player Mana
+#### `playerManaFactor`
 
 ```json
     "playerManaFactor": 1,
@@ -119,7 +135,7 @@ Scales the max mana for players.
 | -------------- | ------- | -------------- |
 | number (float) | `1`     | `0.25` - `4.0` |
 
-#### Player Stamina Factor
+#### `playerStaminaFactor`
 
 ```json
     "playerStaminaFactor": 1,
@@ -131,7 +147,7 @@ Scales players max stamina by the given percentage.
 | ---------- | ------- | -------------- |
 | percentage | `1`     | `0.25` - `4.0` |
 
-#### Player Body Heat Factor
+#### `playerBodyHeatFactor`
 
 ```json
     "playerBodyHeatFactor": 1,
@@ -147,7 +163,7 @@ Adjusts the max amount of time a player can withstand frost.
 | ---------- | ------- | ------------- |
 | percentage | `1`     | `0.5` - `2.0` |
 
-#### Player Diving Time Factor
+#### `playerDivingTimeFactor`
 
 ```json
     "playerDivingTimeFactor": 1,
@@ -163,7 +179,7 @@ Modifies the initial amount of player oxygen (*time available underwater*).
 
 ### Difficulty Settings
 
-#### Enable Durability
+#### `enableDurability`
 
 ```json
     "enableDurability": true,
@@ -176,7 +192,7 @@ Toggle whether weapons should break or not.
 | ------- | ------- | ----------------- |
 | boolean | `true`  | `true` or `false` |
 
-#### Enable Starving Debuff
+#### `enableStarvingDebuff`
 
 ```json
     "enableStarvingDebuff": false,
@@ -188,7 +204,7 @@ Enables hunger and starvation. During starvation, the player loses health period
 | ------- | ------- | ----------------- |
 | boolean | `false` | `true` or `false` |
 
-#### Food Buff Duration Factor
+#### `foodBuffDurationFactor`
 
 ```json
     "foodBuffDurationFactor": 1,
@@ -200,7 +216,7 @@ Scales food buff durations.
 | ---------- | ------- | ------------- |
 | percentage | `1`     | `0.5` - `2.0` |
 
-#### From Hunger To Starving
+#### `fromHungerToStarving`
 
 ```json
     "fromHungerToStarving": 600000000000,
@@ -212,7 +228,7 @@ This setting controls the length of the hungry state before starving, **in nanos
 | ------ | -------------- | -------------------------------- |
 | number | `600000000000` | `300000000000` - `1200000000000` |
 
-#### Shroud Time Factor
+#### `shroudTimeFactor`
 
 ```json
     "shroudTimeFactor": 1,
@@ -224,7 +240,7 @@ Scales how long player characters can remain within the Shroud.
 | ---------- | ------- | ------------ |
 | percentage | `1`     | `0.5 ` - `2` |
 
-#### Tombstone Mode
+#### `tombstoneMode`
 
 ```json
     "tombstoneMode": "AddBackpackMaterials"
@@ -236,7 +252,7 @@ The players can either keep or lose all items from their backpack when dying. In
 | ---- | ------------------------ | ------------------------------------------------------------ |
 | text | `"AddBackpackMaterials"` | `"AddBackpackMaterials"`, `"Everything"`, or `"NoTombstone"` |
 
-#### Enable Glider Turbulences
+#### `enableGliderTurbulences`
 
 ```json
     "enableGliderTurbulences": true,
@@ -248,7 +264,7 @@ If turned off, the glider will not be affected by air turbulences, just as in pr
 | ------- | ------- | ----------------- |
 | boolean | `true`  | `true` or `false` |
 
-#### Weather Frequency
+#### `weatherFrequency`
 
 ```json
     "weatherFrequency": "Normal",
@@ -260,7 +276,7 @@ This setting allows defining how often new weather phenomena appear in the game 
 | ---- | ---------- | ------------------------------------------------ |
 | text | `"Normal"` | `"Disabled"`, `"Rare"`, `"Normal"`, or `"Often"` |
 
-#### Fishing Difficulty
+#### `fishingDifficulty`
 
 ```json
     "fishingDifficulty": "Normal",
@@ -272,7 +288,7 @@ This setting defines the strength of the fish during the fishing minigame. The s
 | ---- | ---------- | -------------------------------------------------------------- |
 | text | `"Normal"` | `"VeryEasy"`, `"Easy"`, `"Normal"`, `"Hard"`, and `"VeryHard"` |
 
-#### Mining Damage Factor
+#### `miningDamageFactor`
 
 ```json
     "miningDamageFactor": 1,
@@ -284,7 +300,7 @@ This scales the mining damage. A higher mining damage leads to increased terrafo
 | ---------- | ------- | ------------- |
 | percentage | `1`     | `0.5` - `2.0` |
 
-#### Plant Growth Speed Factor
+#### `plantGrowthSpeedFactor`
 
 ```json
     "plantGrowthSpeedFactor": 1,
@@ -296,7 +312,7 @@ Scales the value of the plant growth speed.
 | ---------- | ------- | -------------- |
 | percentage | `1`     | `0.25` - `2.0` |
 
-#### Resource Drop Stack Amount Factor
+#### `resourceDropStackAmountFactor`
 
 ```json
     "resourceDropStackAmountFactor": 1,
@@ -308,7 +324,7 @@ Scales the amount of materials per loot stack in chests, defeated enemies etc.
 | ---------- | ------- | -------------- |
 | percentage | `1`     | `0.25` - `2.0` |
 
-#### Factory Production Speed Factor
+#### `factoryProductionSpeedFactor`
 
 ```json
     "factoryProductionSpeedFactor": 1,
@@ -320,7 +336,7 @@ Scales the length of production times for workshop items.
 | ---------- | ------- | -------------- |
 | percentage | `1`     | `0.25` - `2.0` |
 
-#### Perk Upgrade Recycling Factor
+#### `perkUpgradeRecyclingFactor`
 
 ```json
     "perkUpgradeRecyclingFactor": 0.100000,
@@ -332,7 +348,7 @@ Scales the amount of Runes that are returned to you when salvaging upgraded weap
 | ---------- | ---------- | --------- |
 | percentage | `0.100000` | `0` - `1` |
 
-#### Perk Cost Factor
+#### `perkCostFactor`
 
 ```json
     "perkCostFactor": 1,
@@ -348,7 +364,7 @@ Scales the amount of Runes required for upgrading weapons.
 
 ### Experience Settings
 
-#### Experience Combat Factor
+#### `experienceCombatFactor`
 
 ```json
     "experienceCombatFactor": 1,
@@ -360,7 +376,7 @@ Scales the amount of XP received through combat.
 | ---------- | ------- | -------------- |
 | percentage | `1`     | `0.25` - `2.0` |
 
-#### Experience Mining Factor
+#### `experienceMiningFactor`
 
 ```json
     "experienceMiningFactor": 1,
@@ -372,7 +388,7 @@ Scales the amount of XP received by mining resources.
 | ---------- | ------- | ------------- |
 | percentage | `1`     | `0.0` - `2.0` |
 
-#### Experience Exploration Factor
+#### `experienceExplorationQuestsFactor`
 
 ```json
     "experienceExplorationQuestsFactor": 1,
@@ -388,7 +404,7 @@ Scales the amount of XP received by exploring and completing quests
 
 ### Enemy Settings
 
-#### Random Spawner Amount
+#### `randomSpawnerAmount`
 
 ```json
     "randomSpawnerAmount": "Normal"
@@ -400,7 +416,7 @@ This setting controls the amount of enemies in the world.
 | ---- | ---------- | --------------------------------------------- |
 | text | `"Normal"` | `"Few"`, `"Normal"`, `"Many"`, or `"Extreme"` |
 
-#### Aggro Pool Amount
+#### `aggroPoolAmount`
 
 ```json
     "aggroPoolAmount": "Normal"
@@ -412,7 +428,7 @@ This setting controls how many enemies are allowed to attack at the same time.
 | ---- | ---------- | --------------------------------------------- |
 | text | `"Normal"` | `"Few"`, `"Normal"`, `"Many"`, or `"Extreme"` |
 
-#### Enemy Damage Factor
+#### `enemyDamageFactor`
 
 ```json
     "enemyDamageFactor": 1,
@@ -424,7 +440,7 @@ Scales all enemy damage *except for bosses*.
 | ---------- | ------- | -------------- |
 | percentage | `1`     | `0.25` - `5.0` |
 
-#### Enemy Health Factor
+#### `enemyHealthFactor`
 
 ```json
     "enemyHealthFactor": 1,
@@ -436,7 +452,7 @@ Scales all enemy health by this value - except for bosses. Ingame, the factor is
 | ---------- | ------- | -------------- |
 | percentage | `1`     | `0.25` - `4.0` |
 
-#### Enemy Stamina Factor
+#### `enemyStaminaFactor`
 
 ```json
     "enemyStaminaFactor": 1,
@@ -448,7 +464,7 @@ Scales all enemy stamina by this value. It will take longer to stun enemies with
 | ---------- | ------- | ------------- |
 | percentage | `1`     | `0.5` - `2.0` |
 
-#### Enemy Perception Range Factor
+#### `enemyPerceptionRangeFactor`
 
 ```json
     "enemyPerceptionRangeFactor": 1,
@@ -460,7 +476,7 @@ Scales how far enemies can see and hear the player. This excludes bosses.
 | ---------- | ------- | ------------- |
 | percentage | `1`     | `0.5` - `2.0` |
 
-#### Boss Damage Factor
+#### `bossDamageFactor`
 
 ```json
     "bossDamageFactor": 1,
@@ -472,7 +488,7 @@ This setting scales the damage of boss attacks.
 | ---------- | ------- | ------------- |
 | percentage | `1`     | `0.2` - `5.0` |
 
-#### Boss Health Factor
+#### `bossHealthFactor`
 
 ```json
     "bossHealthFactor": 1,
@@ -484,7 +500,7 @@ Scales all health of bosses by this value.
 | ---------- | ------- | ------------- |
 | percentage | `1`     | `0.2` - `5.0` |
 
-#### Threat Bonus
+#### `threatBonus`
 
 ```json
     "threatBonus": 1,
@@ -496,7 +512,7 @@ Scales the frequency of enemy attacks. This *excludes* bosses.
 | ---------- | ------- | -------------- |
 | percentage | `1`     | `0.25` - `4.0` |
 
-#### Pacify All Enemies
+#### `pacifyAllEnemies`
 
 ```json
     "pacifyAllEnemies": false,
@@ -513,7 +529,7 @@ Options: true / false
 
 ### Animal Settings
 
-#### Taming Startle Repercussions
+#### `tamingStartleRepercussion`
 
 > [!NOTE]
 > Progress is visualized by hearts in the game.
@@ -532,7 +548,7 @@ This setting allows defining how the game reacts when the player startles the wi
 
 ### Time Settings
 
-#### Day Time Duration
+#### `dayTimeDuration`
 
 ```json
     "dayTimeDuration": 1800000000000,
@@ -544,7 +560,7 @@ Scales the length of daytime **in nanoseconds** (displayed in minutes).
 | ------ | --------------- | -------------------------------- |
 | number | `1800000000000` | `120000000000` - `3600000000000` |
 
-#### Night Time Duration
+#### `nightTimeDuration`
 
 ```json
     "nightTimeDuration": 720000000000,
@@ -560,7 +576,7 @@ Scales the length of nightime **in nanoseconds** (displayed in minutes).
 
 ### Shroud Settings
 
-#### Curse Modifier
+#### `curseModifier`
 
 > [!NOTE]
 > the `"Easy"` option turns off the modifier completely.
@@ -576,7 +592,6 @@ This setting allows switching the Shroud curse off or modifying the chance for r
 | text | `"Normal"` | `"Easy"`, `"Normal"`, `"Hard"`, |
 
 ## Game Settings Example
-
 
 ```json
 "gameSettingsPreset": "Custom",
